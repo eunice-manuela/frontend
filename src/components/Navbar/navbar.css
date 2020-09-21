@@ -1,0 +1,244 @@
+nav{
+  bottom:0;
+  z-index: 1;
+ 
+}
+.li_nav{
+    font-size:medium;
+    font-weight:bold;
+}
+.li_dropdown{
+  font-size: large;
+  font-weight: bold;
+}
+.gly_dropdown{
+  margin-right: 20;
+  margin-top: 10;
+  margin-bottom: 10;
+}
+li a.active {
+    color:#660099 !important;
+    border-bottom: 3px solid #660099;
+}
+#onlineSchool{
+  color: #660099;
+  font-weight: 900;
+  font-size:x-large;
+  bottom: auto;
+  top:25px;
+  left:-10px;
+  margin-left:0px;
+  bottom: auto;
+  position: relative;
+}
+
+.iconStyle{
+  margin-top:10px;
+}
+
+  .sidenav {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    left:1;
+    background-color: #111;
+    padding-top: 50px;
+  }
+  .button a{
+    font-size:14px;
+    color: silver;
+    font-weight: 900;
+  }
+  .sidenav a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    text-decoration:none;
+    font-size: 15px;
+    color:white;
+    display: block;
+  }
+
+  .sidenav a:hover {
+    color:orange;
+  }
+  
+  .main {
+    margin-left:200px;
+    margin-top: 30px; /* Same as the width of the sidenav */
+  }
+  .side_container{
+      margin-right:1px;
+      margin-left:1px;
+      margin-top: 30px;
+  }
+  .my-custom-scrollbar {
+    position: relative;
+    height: 330px;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+  .ReactModal__Overlay {
+      opacity: 0;
+      transition: opacity 500ms ease-in-out;
+  }
+  
+  .ReactModal__Overlay--after-open{
+      opacity: 1;
+  }
+  
+  .ReactModal__Overlay--before-close{
+      opacity: 0;
+      
+  }
+  .sticky {
+    position: sticky;
+    top:0;
+  }
+  .button {
+    position: relative;
+    border: none;
+    margin:5px;
+    border-radius:20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+  }  
+  .button:after {
+    content: "";
+    background: #000000;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  .retour{
+    border: none;
+  }
+  .button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+  .onlineModal{
+    font-size:xx-large;
+  }
+  .buttonModal{
+    margin-left:8%;
+    margin-bottom:20px;
+    width:340px;
+  }
+  .headerModal{
+   
+    color:white;
+    top:0;
+    right: 0;
+    left: 0;
+    padding-bottom: auto;
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+  }
+  @media only screen and (min-width: 600px) {
+    .retour{
+      margin-left: 100px;
+    }
+    #searchOutside{
+      display: none;
+    }
+    #isconnectLargeScreen{
+      display:none;
+    }
+    #smallScreen{
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+
+    #isconnectSmallScreen{
+      display:none;
+    }
+    #largeScreen{
+      display: none;
+    }
+    #searchInside{
+      display: none;
+    }
+    .buttonModal{
+      margin-left:10%;
+      margin-bottom:20px;
+      width:280px;
+    }
+    #searchIcon{
+      cursor: pointer;
+      margin-top: 15px;  
+      right:80px;
+    }
+    
+    .retour{
+      margin-right:5px;
+    }
+    #onlineSchool{
+      top:30px;
+      margin-left:0px;
+      font-size:large;
+    }
+    .ul_nav{
+      padding-top:40px;
+    }
+    .li_nav{
+      font-size:x-small;
+    }
+    .li_dropdown{
+      font-size: medium;
+    }
+    .logo{
+     height:20px;
+     margin-left:5px;
+     margin-top:20px;
+    }
+    a.active {
+      color:#660099 !important;
+      border-bottom: 0px;
+  }
+  }
+  @media only screen and (max-width: 380px) {
+
+    #searchOutside{
+      margin-left:30%;
+      }
+    #onlineSchool{
+      top:30px;
+      margin-left:0px;
+      font-size:small;
+    }
+    .ul_nav{
+      padding-top:40px;
+    }
+    .li_nav{
+      font-size:x-small;
+    }
+    a.active {
+      color:#660099 !important;
+      border-bottom: 0px;
+  }
+  .sticky {
+    position:sticky;
+    bottom: 0;
+    top:0;
+  }
+  }
+  @media only screen and (max-width: 280px) {
+    #searchOutside{
+      margin-left:20%;
+      }
+  }
