@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../Accueil/Accueil.css';
 import forums from '../../images/forums.jpg'
 import epreuves from '../../images/mathematics2.jpg'
-import corrections from '../../images/chimie.jpg'
+import corrections from '../../images/Corrections.jpg'
 
         
 
