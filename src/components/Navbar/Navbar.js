@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import {AuthLogin} from '../user/AuthLogin';
 import {AuthSignUp} from '../user/AuthSignUp';
 import '../Navbar/navbar.css';
-import $ from 'jquery';
 
 
 
@@ -18,7 +17,7 @@ class Navbar extends Component {
             create_Account:false,
             log_in:false,
             modalVisible:false,
-            isconnect:false,
+            isconnect:true,
 
         }
     }
@@ -46,7 +45,7 @@ class Navbar extends Component {
                         <li class="divider"></li>
                         <li className="li_dropdown" activeClassName="main-nav">
                             <NavLink exact to="/Parameters"><span style={styles.glyphiconDropdown} class="glyphicon glyphicon-cog"></span>
-                             Mes paramètres </NavLink>
+                             Mon compte </NavLink>
                         </li>
                         
                         <li className="li_dropdown" activeClassName="main-nav">

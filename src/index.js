@@ -16,7 +16,7 @@ import Footer from '../src/components/footer/footer';
 
 
 render(  
-  <div>
+  <div style={{backgroundColor:'rgba(0,0,0,0.1)'}}>
     
     <Router>
         <Navbar/>
