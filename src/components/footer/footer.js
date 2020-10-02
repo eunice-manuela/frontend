@@ -54,7 +54,7 @@ export default class Footer extends Component {
                         </div>
                     </div>
                 </div>
-                <p className="footer-bottom-text">Tous droits réservés, <i class="fa fa-copyright"></i>copyright 2021</p>
+                <p className="footer-bottom-text">Tous droits réservés, <span class="glyphicon glyphicon-copyright-mark"></span> copyright 2021</p>
             </footer>            
         );
     }

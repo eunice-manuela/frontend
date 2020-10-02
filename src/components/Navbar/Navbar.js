@@ -17,7 +17,7 @@ class Navbar extends Component {
             create_Account:false,
             log_in:false,
             modalVisible:false,
-            isconnect:true,
+            isconnect:false
 
         }
     }
@@ -243,6 +243,18 @@ class Navbar extends Component {
         return (
             <>
             
+                <div >
+                <div class="jumbotron" >
+                    <h5 style={{marginTop:-20, marginBottom:0}}>
+                        <span class="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 678093445                        
+                    </h5>
+                    <h5 style={{marginBottom:-20 }}>
+                        <span class="glyphicon glyphicon-envelope" style={{marginRight:15}}></span>Online.School@gmail.com                       
+                    </h5>
+               </div>
+                </div>
+               
+           
             
             <nav className="navbar navbar-expand-sm navbar-default sticky" style={{Bottom:0,minHeight:60}}>
 

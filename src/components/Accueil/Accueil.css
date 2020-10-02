@@ -119,7 +119,6 @@ video{
     border-radius: 10px;
     height: auto;
     width: auto;
-    margin:25px;
   }
   .card2{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -127,7 +126,9 @@ video{
     border-radius:50px;
     height: auto;
     width: auto;
-    margin:25px;
+    margin-left:25px;
+    margin-right: 25px;
+    margin-top:-80px;
   }
   .margin-ambassador{   
     margin-left: 5%;
@@ -189,7 +190,7 @@ video{
   }
   .margin-cards{
       margin-top:50px;
-      margin-left: 50px;
+      margin-bottom: 20px;
       margin-right: 100px;
       margin-left: 100px;
   }
@@ -199,9 +200,7 @@ video{
       color:#c65039;
       font-Weight:"bolder";
   }
-  .padding-cards{
-      margin-bottom: 20px;
-  }
+
 
 
 

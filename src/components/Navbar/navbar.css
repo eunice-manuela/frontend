@@ -3,6 +3,17 @@ nav{
   z-index: 1;
  
 }
+.jumbotron{
+  background-color:rgba(0,0,0,0.8);
+  margin-bottom: 0px;
+}
+.jumbotron h5{
+  color:white;
+  font-weight: bold;
+  margin-right:20px;
+  text-align: right;
+  font-size:small;
+}
 .li_nav{
     font-size:medium;
     font-weight:bold;
@@ -177,6 +188,9 @@ li a.active {
       margin-left:10%;
       margin-bottom:20px;
       width:280px;
+    }
+    .jumbotron{
+      display: none;
     }
     #searchIcon{
       cursor: pointer;
