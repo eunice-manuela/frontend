@@ -1,0 +1,14 @@
+.table{
+    padding-left:10%;
+    padding-right: 10%;
+    padding-top: 50px;
+}
+th{
+    color: white;
+}
+@media only screen and (max-width:600px){
+    .table{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+}

@@ -17,7 +17,7 @@ class Navbar extends Component {
             create_Account:false,
             log_in:false,
             modalVisible:false,
-            isconnect:false
+            isconnect:true
 
         }
     }
@@ -278,7 +278,7 @@ class Navbar extends Component {
                         <NavLink exact to="/Accueil">Accueil </NavLink>
                     </li>
                     <li className="li_nav js-scroll-trigger" >
-                        <NavLink exact to="/Concours">Concours</NavLink>
+                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
                     </li>
                     <li className="li_nav js-scroll-trigger">
                         <NavLink exact to="/Examens">Examens</NavLink>
