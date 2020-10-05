@@ -33,7 +33,7 @@ class Bibliotheque extends Component {
             </div>
            <div className='biblio_header sticky'>
                 <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"white",}}>
-                    <a style={{color:'#660099'}}>Catégories <span className="caret"></span></a>
+                    <a style={{color:'#660099'}}>Niveau<span className="caret"></span></a>
                 </button>
                 <ul className="dropdown-menu ul_niveau">
                     <li className="li_dropdown" activeClassName="main-nav">
@@ -59,7 +59,7 @@ class Bibliotheque extends Component {
            </div>
            <div className='biblio_header sticky'>
                 <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"white",}}>
-                    <a style={{color:'#660099'}}>Catégories <span className="caret"></span></a>
+                    <a style={{color:'#660099'}}>Ecole<span className="caret"></span></a>
                 </button>
                 <ul className="dropdown-menu ul_school">
                     <li className="li_dropdown" activeClassName="main-nav">
@@ -85,6 +85,8 @@ class Bibliotheque extends Component {
            </div>
            </div>
            <div className='biblio_body'>
+
+               
            </div>
             
        </div>
