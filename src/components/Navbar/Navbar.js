@@ -34,7 +34,7 @@ class Navbar extends Component {
             return(
                 <>
                  
-                    <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"#660099",}}>
+                    <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"#660099"}}>
                         <a style={{color:'white'}}>Moi <span className="caret"></span></a>
                     </button>
                     <ul className="dropdown-menu ul_dropdown" style={{marginRight:20}}>

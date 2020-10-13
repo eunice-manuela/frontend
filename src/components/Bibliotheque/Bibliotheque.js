@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../Bibliotheque/bibliotheque.css'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 
 class Bibliotheque extends Component {
     render(){
         return (
+            
        <div className='bibliotheque'>
+           <div id="loader">
+                <Loader
+                    type="ThreeDots"//Oval Rings
+                    color="#660099"
+                    visible={true}
+                    height={80}
+                    width={80}
+                    timeout={3000} //3 secs
+                />
+           </div>
+           
            <div>
            <div className='biblio_header sticky'>
                 <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"white",}}>

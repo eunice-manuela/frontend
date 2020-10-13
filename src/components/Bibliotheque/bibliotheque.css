@@ -7,6 +7,11 @@
       padding-right: 10%;
       padding-left: 10%;
   }
+  #loader{
+    width: 80px;
+    margin: 0 auto;
+
+  }
   .ul_categories{
         margin-top: 60px;
        
