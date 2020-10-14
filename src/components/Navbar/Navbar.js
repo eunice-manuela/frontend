@@ -246,7 +246,7 @@ class Navbar extends Component {
                 <div >
                 <div class="jumbotron" >
                     <h5 style={{marginTop:-20, marginBottom:0}}>
-                        <span class="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 678093445                        
+                        <span class="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 600000000                        
                     </h5>
                     <h5 style={{marginBottom:-20 }}>
                         <span class="glyphicon glyphicon-envelope" style={{marginRight:15}}></span>Online.School@gmail.com                       

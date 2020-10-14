@@ -203,6 +203,12 @@ export class Accueil extends Component {
                     {cards}
                 
                 </div>
+                <div className="plus">
+                    <button className="btn" style={{backgroundColor:"white"}}>
+                        <a href="/Bibliotheque"><span class="glyphicon glyphicon-plus-sign"></span> plus</a>
+                    </button>
+                </div>
+                
                 </div>                
             </div> 
        

@@ -92,7 +92,7 @@ video{
   } 
   .button:after {
     content: "";
-    background: #000000;
+    background: white;
     display: block;
     position: absolute;
     padding-top: 300%;
@@ -140,6 +140,19 @@ video{
     width:90%;
     margin-top: 100px;
     margin-bottom: 50px;
+  }
+  button a{
+    color:'#660099';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11;  
+  }
+  .plus{
+    width: 80px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
   }
   .ambassador-header{
       height: 170px;

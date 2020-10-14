@@ -7,7 +7,7 @@ import {Accueil} from './components/Accueil/Accueil';
 import {Notifications} from './components/user/Notifications'
 import Examens from './components/Examens/Examens'
 import Navbar from './components/Navbar/Navbar'
-import ProtectedRoute from'./components/routes/ProtectedRoute';
+//import ProtectedRoute from'./components/routes/ProtectedRoute';
 import { Search } from './components/Search/Search';
 import { Parameters } from './components/user/Parameters';
 import Footer from '../src/components/footer/footer';
