@@ -104,9 +104,7 @@ video{
   }
 
 
-* {
-    box-sizing: border-box;
-  }
+
   
   /* Float four columns side by side */
   
@@ -116,19 +114,22 @@ video{
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
-    border-radius: 10px;
-    height: auto;
-    width: auto;
-  }
-  .card2{
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    text-align: center;
-    border-radius:50px;
     height: auto;
     width: auto;
     margin-left:25px;
     margin-right: 25px;
-    margin-top:-80px;
+  }
+  .card2:hover{
+    box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0);
+  }
+  .card2{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: auto;
+    width: auto;
+    margin-left:20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
   }
   .margin-ambassador{   
     margin-left: 5%;
@@ -187,25 +188,25 @@ video{
       padding:10px;
       background-color: #fafafa;
   }
-  .body-card2{
+  .footer-card{
     height: auto;
     padding:5px;
-    border-radius: 50px;
     background-color:rgba(0, 0, 0, 0.7);
     
   }
-  .footer-card{
+  .body-card2{
       height: auto;
       padding:10px;
+      color: white;
+      text-transform: uppercase;
       background-color: gray;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
+      cursor: pointer;
   }
   .margin-cards{
       margin-top:50px;
       margin-bottom: 20px;
-      margin-right: 100px;
-      margin-left: 100px;
+      margin-right: 5%;
+      margin-left: 5%;
   }
   .divider{
       padding-left: 25px;

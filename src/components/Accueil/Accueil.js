@@ -66,54 +66,30 @@ export class Accueil extends Component {
                     title:"école nationale supérieure polytechnique de Yaoundé 1",
                     prix:"1590 FCFA"
                 },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"1200 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"1396 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"0 FCFA"
-                }
             ]
 
         }
         const cards=dataCard.content.map((card)=>
-           
-            <div className="col-md-4 padding-cards">
-                <div data-aos="fade-up" className="card">
+           <>
+            <div className="col-md-3">
+                <div data-aos="fade-up" className="card2">
                     <div className="header-card">
-                        <img  alt="concours au cameroun online-school" src={require("../../images/chimie.jpg")} style={{borderTopRightRadius:20,borderTopLeftRadius:20}} className="img-responsive"></img>
+                        <img  alt="concours au cameroun online-school" src={require("../../images/chimie.jpg")} className="img-responsive"></img>
                     </div>
                     <div className="body-card">
                         <h5 style={{color:'black'}}>{card.title}</h5>
                     </div>
-                    <div className="footer-card">
-                        <p>Voir les épreuves</p>
-                    </div>                       
-                </div>
-                <div className="card2">
                     <div className="body-card2">
-                        <div className="row">
-                            
-                                <span style={{color:'white'}}>{card.prix}</span>
-                           
-                            
-                                <span className="divider">||</span>  
-                                                  
-                           
-                                <span style={{color:'white'}} className="glyphicon glyphicon-share"></span>   
-                            
-                        </div>                                                                                    
-                    </div>                    
+                        <p>Voir les épreuves</p>
+                    </div>  
+                    <div className="footer-card">
+                        <span style={{color:'white'}}>{card.prix}</span>
+                        <span className="divider">||</span>  
+                        <span style={{color:'white', cursor:"pointer"}} className="glyphicon glyphicon-share"></span>                                                                             
+                    </div>                   
                 </div>
             </div>
+            </>
         )
         
 
@@ -129,7 +105,7 @@ export class Accueil extends Component {
                                 <h2 className='plateform-name'>Online-School,</h2>
                                 <h3 className='slogan'>L'accompagnateur proche de vous, loin de votre poche</h3>
                             </div>
-                            <div data-aos='fade-left' className="col-md-6 col-sm-6">
+                            <div data-aos='fade-left' className="col-md-5 col-sm-5">
                                 <video  controls>
                                     <source src="movie.mp4" type="video/mp4"/>
                                     <source src="movie.ogg" type="video/ogg"/>
@@ -215,9 +191,3 @@ export class Accueil extends Component {
         );
     }
 }
-const styles={
-    img:{
-        width:'100%',
-    },
-}
- 

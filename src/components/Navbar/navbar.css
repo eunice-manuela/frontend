@@ -1,7 +1,5 @@
 nav{
   bottom:0;
-  z-index: 2;
- 
 }
 .jumbotron{
   background-color:rgba(0,0,0,0.8);
@@ -108,6 +106,9 @@ li a.active {
     position: sticky;
     top:0;
   }
+  .button:hover{
+    box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
+  }
   .button {
     position: relative;
     border: none;
@@ -183,6 +184,9 @@ li a.active {
     }
     #searchInside{
       display: none;
+    }
+    .modal{
+      z-index:2;
     }
     .buttonModal{
       margin-left:10%;

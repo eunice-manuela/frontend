@@ -5,6 +5,10 @@ import Modal from 'react-modal';
 import {AuthLogin} from '../user/AuthLogin';
 import {AuthSignUp} from '../user/AuthSignUp';
 import '../Navbar/navbar.css';
+import reinitializeToken from '../../reinitialize_token'
+import axios from 'axios';
+//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+//import Loader from 'react-loader-spinner'
 
 
 
@@ -17,43 +21,108 @@ class Navbar extends Component {
             create_Account:false,
             log_in:false,
             modalVisible:false,
-            isconnect:true
-
-        }
-    }
-    componentDidMount(){
-    }
-
-    deconnect=()=>{
-        this.setState({
+            loading:false,
+            zIndex: 2,
             isconnect:false,
+            user:'',
+        }
+        /*
+        // code to detect when user refresh the page
+        if (window.performance) {
+            if (performance.navigation.type == 1) {
+                 alert( "This page is reloaded");
+            } else {
+              alert( "This page is not reloaded");
+            }
+          }
+          */
+    }
+
+    onSaveUser = () =>{
+        this.setState({
+            isconnect: true,
+            modalVisible: false,
         })
     }
+
+    componentWillMount() {
+        Modal.setAppElement('body');
+    }
+
+    componentDidMount(){
+
+        if(localStorage.getItem('userId')!==null){
+
+            this.setState({isconnect:true})
+
+            reinitializeToken().then(()=>{
+                axios.get('users/'+ localStorage.getItem('userId'),{
+                    headers: {
+                      Authorization: 'Bearer ' + localStorage.getItem('token')
+                    }}).then(
+                    res => {
+                        this.setState({
+                            user: res.data.user
+                        })
+                        console.log('userData',res.data.user)
+                    },
+                    err => {
+                        if(err.response.statusText === 'Unauthorized'){
+                            localStorage.clear()
+                            this.setState({isconnect: false})
+                        }
+                        console.log(err.response)
+                    }
+                )
+            })
+
+        }       
+        
+        this.setState({
+            loading: true
+        })
+
+    }
+    userName=()=>{
+        if(typeof this.state.user.firstName !== 'undefined' || typeof this.state.user.lastName !== 'undefined'){
+            return(
+                <>
+                    <li className="li_dropdown" activeClassName="main-nav">
+                        <a style={{cursor:'default'}}><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-user"></span>
+                            {this.state.user.firstName} {this.state.user.lastName}</a>
+                    </li>
+                    <li className="divider"></li>
+                </>
+            )
+        }
+    }
+    
     isconnect=()=>{
         if(this.state.isconnect){
             return(
                 <>
                  
                     <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"#660099"}}>
-                        <a style={{color:'white'}}>Moi <span className="caret"></span></a>
+                        <a style={{color:'white'}}>{this.state.user.pseudo} <span className="caret"></span></a>
                     </button>
+                        
                     <ul className="dropdown-menu ul_dropdown" style={{marginRight:20}}>
-                        <li className="li_dropdown" activeClassName="main-nav">
-                            <a style={{cursor:'default'}}><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-user"></span>
-                            Tchoffo Jean Aristote</a>
-                        </li>
-                        <li class="divider"></li>
+                        {this.userName()}
+                        
                         <li className="li_dropdown" activeClassName="main-nav">
                             <NavLink exact to="/Parameters"><span style={styles.glyphiconDropdown} class="glyphicon glyphicon-cog"></span>
                              Mon compte </NavLink>
                         </li>
                         
                         <li className="li_dropdown" activeClassName="main-nav">
-                            <NavLink exact to="/Notifications"><span style={styles.glyphiconDropdown} class="glyphicon glyphicon-bell"></span>
+                            <NavLink exact to="/Notifications"><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-bell"></span>
                              Notifications </NavLink>
                         </li>
-                        
-                        <li className="li_dropdown" activeClassName="main-nav">
+                        <li className="divider"></li>
+                        <li className="li_dropdown" activeClassName="main-nav" onClick={()=>{
+                            localStorage.clear()
+                            this.setState({isconnect: false})
+                        }}>
                             <a><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-log-out"></span>
                             Déconnexion </a>
                         </li>
@@ -67,10 +136,10 @@ class Navbar extends Component {
         if(!this.state.isconnect){
             return(
                 <>
-                    <button onClick={this.isCreateAccount} className="button" style={{backgroundColor:'rgba(0,0,0,0.8)'}} >
+                    <button onClick={this.isCreateAccount} className="button" style={{backgroundColor:'rgba(0,0,0,0.8)',zIndex:3}} >
                         <a className="navbar-brand" style={{color:'white',margin:"auto"}}>S'abonner</a>
                     </button>
-                    <button onClick={this.isLogIn} className="button" style={{backgroundColor:"#660099",}} >
+                    <button onClick={this.isLogIn} className="button" style={{backgroundColor:"#660099",zIndex:3}} >
                         <a className="navbar-brand" style={{color:"white",margin:"auto"}}>Connexion</a>
                     </button>
                 </>
@@ -127,6 +196,7 @@ class Navbar extends Component {
             log_in:true,
             create_Account:false,
             modalVisible:true,
+            zIndex:1,
            
         })
     } 
@@ -136,6 +206,7 @@ class Navbar extends Component {
             create_Account:true,
             log_in:false,
             modalVisible:true,
+            zIndex:1
            
         })
     }
@@ -145,7 +216,7 @@ class Navbar extends Component {
             create_Account:false,
             modalVisible:false,
             log_in:false,
-            isconnect:true,
+            zIndex:2,
            
         })
         this.refreshNavBar()
@@ -157,12 +228,22 @@ class Navbar extends Component {
      contentModal(){
         if(this.state.log_in){
             return(
-               <AuthLogin/>
+               <AuthLogin data = {
+                   {
+                       user: this.state.user, 
+                       saveUser: this.onSaveUser.bind(this)
+                    }
+                }/>
             )
         }
         if(this.state.create_Account){
             return(
-                <AuthSignUp/>
+                <AuthSignUp data = {
+                    {
+                        user: this.state.user,
+                        saveUser: this.onSaveUser.bind(this)
+                    }
+                }/>
             )
         }
     }
@@ -197,7 +278,7 @@ class Navbar extends Component {
                         borderRadius: '10px',
                         outline: 'none',
                         padding: '0px'
-                        }
+                        },
                     }}>
                          
                         <div className="column headerModal">
@@ -240,23 +321,23 @@ class Navbar extends Component {
 
     
     render(){
+
         return (
             <>
             
                 <div >
-                <div class="jumbotron" >
+                <div className="jumbotron" >
                     <h5 style={{marginTop:-20, marginBottom:0}}>
-                        <span class="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 600000000                        
+                        <span className="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 600000000                        
                     </h5>
                     <h5 style={{marginBottom:-20 }}>
-                        <span class="glyphicon glyphicon-envelope" style={{marginRight:15}}></span>Online.School@gmail.com                       
+                        <span className="glyphicon glyphicon-envelope" style={{marginRight:15}}></span>Online.School@gmail.com                       
                     </h5>
                </div>
                 </div>
-               
            
             
-            <nav className="navbar navbar-expand-sm navbar-default sticky" style={{Bottom:0,minHeight:60}}>
+            <nav className="navbar navbar-expand-sm navbar-default sticky" style={{zIndex:this.state.zIndex, Bottom:0,minHeight:60}}>
 
                 <span id="isconnectLargeScreen">
                     {this.isconnect()}
@@ -289,6 +370,7 @@ class Navbar extends Component {
                     <li className="li_nav js-scroll-trigger">
                         <NavLink exact to="/contact">Nous contacter</NavLink>
                     </li>
+                    
                     <span id="isconnectSmallScreen">
                         {this.isconnect()}
                     </span>

@@ -9,6 +9,8 @@
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2);
   }
   .biblio-header{
+    position :fixed;
+    top:200px;
     z-index: 1;
   }
   .image-card img{

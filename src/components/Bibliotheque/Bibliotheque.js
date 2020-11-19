@@ -141,7 +141,7 @@ class Bibliotheque extends Component {
                 />
            </div>
            
-           <div style={{marginBottom:20}}>
+           <div style={{ marginBottom:20}}>
                 <div className='biblio-header sticky'>
                         <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"white",}}>
                             <a style={{color:'#660099',textTransform:'uppercase',fontSize:11}}>{this.state.categorie}<span className="caret"></span></a>

@@ -1,38 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import App from './App'
 import * as serviceWorker from './serviceWorker';
-import {Accueil} from './components/Accueil/Accueil';
-import {Notifications} from './components/user/Notifications'
-import Examens from './components/Examens/Examens'
-import Navbar from './components/Navbar/Navbar'
-//import ProtectedRoute from'./components/routes/ProtectedRoute';
-import { Search } from './components/Search/Search';
-import { Parameters } from './components/user/Parameters';
-import Footer from '../src/components/footer/footer';
-import Bibliotheque from './components/Bibliotheque/Bibliotheque';
-//import ClientRoute from './components/ClientRoute';
+import axios from 'axios'; 
 
 
-render(  
-  <div style={{backgroundColor:'rgba(0,0,0,0.1)'}}>
-    
-    <Router>
-        <Navbar/>
-        <Route exact path="/" component={Accueil}/>
-        <Route exact path="/Accueil" component={Accueil}/>
-        <Route exact path="/Search" component={Search}/>
-        <Route exact path="/Bibliotheque" component={Bibliotheque}/>
-        <Route exact path="/Examens" component={Examens}/>
-        <Route exact path="/Notifications" component={Notifications}/>
-        <Route exact path="/Parameters" component={Parameters}/>
-        <Footer/>
-    </Router>
-    
-  </div>,
-  document.getElementById('root')
-);
+axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('token');
+
+render( <App/> ,document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
