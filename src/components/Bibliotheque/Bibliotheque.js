@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 import '../Bibliotheque/bibliotheque.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
@@ -147,27 +147,27 @@ class Bibliotheque extends Component {
                             <a style={{color:'#660099',textTransform:'uppercase',fontSize:11}}>{this.state.categorie}<span className="caret"></span></a>
                         </button>
                         <div className="dropdown-menu dropdown_categories">
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="categories" checked={this.state.categorie === "categories"} class="form-check-input" onChange={this.onChange_categorie} name="all"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="categories" checked={this.state.categorie === "categories"} className="form-check-input" onChange={this.onChange_categorie} name="all"/>  
                                     <span>Toutes les catégories</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="epreuves" checked={this.state.categorie === "epreuves"} class="form-check-input" onChange={this.onChange_categorie} name="epreuve"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="epreuves" checked={this.state.categorie === "epreuves"} className="form-check-input" onChange={this.onChange_categorie} name="epreuve"/>  
                                     <span>Epreuves</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value= "corrections" checked={this.state.categorie === "corrections"} class="form-check-input" onChange={this.onChange_categorie} name="correction"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value= "corrections" checked={this.state.categorie === "corrections"} className="form-check-input" onChange={this.onChange_categorie} name="correction"/>  
                                     <span>Corrections</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="exercices" checked={this.state.categorie === "exercices"} class="form-check-input" onChange={this.onChange_categorie} name="exercices"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="exercices" checked={this.state.categorie === "exercices"} className="form-check-input" onChange={this.onChange_categorie} name="exercices"/>  
                                     <span>Exercices type corrigés</span>
                                 </label>
                             </div>
@@ -179,27 +179,27 @@ class Bibliotheque extends Component {
                             <a style={{color:'#660099',textTransform:'uppercase',fontSize:11}}>{this.state.niveau}<span className="caret"></span></a>
                         </button>
                         <div className="dropdown-menu dropdown_niveau">
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="niveau" checked={this.state.niveau === "niveau"} class="form-check-input" onChange={this.onChange_niveau} name="all"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="niveau" checked={this.state.niveau === "niveau"} className="form-check-input" onChange={this.onChange_niveau} name="all"/>  
                                     <span>Tous les niveaux</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="baccalauréat" checked={this.state.niveau === "baccalauréat"} class="form-check-input" onChange={this.onChange_niveau} name="baccalaureat"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="baccalauréat" checked={this.state.niveau === "baccalauréat"} className="form-check-input" onChange={this.onChange_niveau} name="baccalaureat"/>  
                                     <span>baccalauréat</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="bacc+2" checked={this.state.niveau === "bacc+2"} class="form-check-input" onChange={this.onChange_niveau} name="bacc+2"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="bacc+2" checked={this.state.niveau === "bacc+2"} className="form-check-input" onChange={this.onChange_niveau} name="bacc+2"/>  
                                     <span>baccalauréat plus 2</span>
                                 </label>
                             </div>
-                            <div class="form-check check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="licence" checked={this.state.niveau === "licence"} class="form-check-input" onChange={this.onChange_niveau} name="licence"/>  
+                            <div className="form-check check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="licence" checked={this.state.niveau === "licence"} className="form-check-input" onChange={this.onChange_niveau} name="licence"/>  
                                     <span>Licence</span>
                                 </label>
                             </div>
@@ -212,63 +212,63 @@ class Bibliotheque extends Component {
                     </button>
                     <div className="dropdown-menu dropdown_ecole">
 
-                            <div class="form-check-inline check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="option1" checked={this.state.ecole === "option1"} class="form-check-input" onChange={this.onChange_ecole} name="option1"/>  
+                            <div className="form-check-inline check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="option1" checked={this.state.ecole === "option1"} className="form-check-input" onChange={this.onChange_ecole} name="option1"/>  
                                     <span>option1</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option2" checked={this.state.ecole === "option2"} class="form-check-input" onChange={this.onChange_ecole} name="option2"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option2" checked={this.state.ecole === "option2"} className="form-check-input" onChange={this.onChange_ecole} name="option2"/>  
                                     <span>option2</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option3" checked={this.state.ecole === "option3"} class="form-check-input" onChange={this.onChange_ecole} name="option3"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option3" checked={this.state.ecole === "option3"} className="form-check-input" onChange={this.onChange_ecole} name="option3"/>  
                                     <span>option3</span>
                                 </label>
                             </div>
 
-                            <div class="form-check-inline check-option">
-                            <label class="form-check-label">
-                                    <input type="radio" value="option4" checked={this.state.ecole === "option4"} class="form-check-input" onChange={this.onChange_ecole} name="option4"/>  
+                            <div className="form-check-inline check-option">
+                            <label className="form-check-label">
+                                    <input type="radio" value="option4" checked={this.state.ecole === "option4"} className="form-check-input" onChange={this.onChange_ecole} name="option4"/>  
                                     <span>option4</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option5" checked={this.state.ecole === "option5"} class="form-check-input" onChange={this.onChange_ecole} name="option5"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option5" checked={this.state.ecole === "option5"} className="form-check-input" onChange={this.onChange_ecole} name="option5"/>  
                                     <span>option5</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option6" checked={this.state.ecole === "option6"} class="form-check-input" onChange={this.onChange_ecole} name="option6"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option6" checked={this.state.ecole === "option6"} className="form-check-input" onChange={this.onChange_ecole} name="option6"/>  
                                     <span>option6</span>
                                 </label>
                             </div>
                             
                            
-                            <div class="form-check-inline check-option">
-                                <label class="form-check-label">
-                                    <input type="radio" value="option7" checked={this.state.ecole === "option7"} class="form-check-input" onChange={this.onChange_ecole} name="option7"/>  
+                            <div className="form-check-inline check-option">
+                                <label className="form-check-label">
+                                    <input type="radio" value="option7" checked={this.state.ecole === "option7"} className="form-check-input" onChange={this.onChange_ecole} name="option7"/>  
                                     <span>option7</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option8" checked={this.state.ecole === "option8"} class="form-check-input" onChange={this.onChange_ecole} name="option8"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option8" checked={this.state.ecole === "option8"} className="form-check-input" onChange={this.onChange_ecole} name="option8"/>  
                                     <span>option8</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option9" checked={this.state.ecole === "option9"} class="form-check-input" onChange={this.onChange_ecole} name="option9"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option9" checked={this.state.ecole === "option9"} className="form-check-input" onChange={this.onChange_ecole} name="option9"/>  
                                     <span>option9</span>
                                 </label>
                             </div>
 
-                            <div class="form-check-inline check-option">
-                            <label class="form-check-label">
-                                    <input type="radio" value="option10" checked={this.state.ecole === "option10"} class="form-check-input" onChange={this.onChange_ecole} name="option10"/>  
+                            <div className="form-check-inline check-option">
+                            <label className="form-check-label">
+                                    <input type="radio" value="option10" checked={this.state.ecole === "option10"} className="form-check-input" onChange={this.onChange_ecole} name="option10"/>  
                                     <span>option10</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option11" checked={this.state.ecole === "option11"} class="form-check-input" onChange={this.onChange_ecole} name="option11"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option11" checked={this.state.ecole === "option11"} className="form-check-input" onChange={this.onChange_ecole} name="option11"/>  
                                     <span>option11</span>
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="radio" value="option12" checked={this.state.ecole === "option12"} class="form-check-input" onChange={this.onChange_ecole} name="option12"/>  
+                                <label className="form-check-label">
+                                    <input type="radio" value="option12" checked={this.state.ecole === "option12"} className="form-check-input" onChange={this.onChange_ecole} name="option12"/>  
                                     <span>option12</span>
                                 </label>
                             </div>

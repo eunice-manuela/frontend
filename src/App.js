@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import {Accueil} from './components/Accueil/Accueil';
 import {Notifications} from './components/user/Notifications'
 import Examens from './components/Examens/Examens'
@@ -10,6 +10,8 @@ import { Search } from './components/Search/Search';
 import { Parameters } from './components/user/Parameters';
 import Footer from '../src/components/footer/footer';
 import Bibliotheque from './components/Bibliotheque/Bibliotheque';
+import DocumentPage from './components/DocumentPage/DocumentPage';
+import NotFoundPage from './components/NotFound/NotFoundPage';
 //import ClientRoute from './components/ClientRoute';
 
 function App() {
@@ -22,9 +24,11 @@ function App() {
         <Route exact path="/Accueil" component={Accueil}/>
         <Route exact path="/Search" component={Search}/>
         <Route exact path="/Bibliotheque" component={Bibliotheque}/>
+        <Route exact path = "/Bibliotheque/:id" component = {DocumentPage} />
         <Route exact path="/Examens" component={Examens}/>
         <Route exact path="/Notifications" component={Notifications}/>
         <Route exact path="/Parameters" component={Parameters}/>
+        <Route component={NotFoundPage}/>
         <Footer/>
     </Router> 
   </div>
