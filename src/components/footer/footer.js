@@ -37,9 +37,9 @@ export default class Footer extends Component {
 
                             <div className="col-md-3 col-sm-6 col-xs-12 segment-three md-mb-30 sm-mb-30">
                                 <h2>réseaux sociaux</h2>
-                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                <a href="#"><i className="fa fa-instagram"></i></a>
+                                <a href="#" className="social_facebook"><i className="fa fa-facebook"></i></a>
+                                <a href="#" className="social_twitter"><i className="fa fa-twitter"></i></a>
+                                <a href="#" className="social_instagram"><i className="fa fa-instagram"></i></a>
                                 
                             </div>
 

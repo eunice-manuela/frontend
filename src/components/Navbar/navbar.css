@@ -2,15 +2,49 @@ nav{
   bottom:0;
 }
 .jumbotron{
+  max-height: 60px;
   background-color:rgba(0,0,0,0.8);
   margin-bottom: 0px;
 }
 .jumbotron h5{
+
   color:white;
   font-weight: bold;
-  margin-right:20px;
-  text-align: right;
+  margin-left:20px;
+  text-align: left;
   font-size:18px;
+}
+.social_facebook a{
+  background: #3b5998;
+}
+.social_twitter a{
+  background :#00acee;
+}
+.social_instagram a{
+  background :#f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+.social_enveloppe a{
+  background :#660099;
+}
+.social_link{
+  margin-top: -30px;
+}
+.social_link a{
+  width:40px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 50%;
+  margin:15px;
+  float: right;
+}
+.social_link a i{
+  font-size:20px;
+  color:#fff;
+  padding:10px 12px;
 }
 .li_nav{
     font-size:medium;

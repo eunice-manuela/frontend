@@ -77,12 +77,25 @@
     padding-right: 10px;
 }
 .segment-three a{
-    background :#494848;
+    
     width:40px;
     height: 40px;
     display: inline-block;
     border-radius: 50%;
     margin:15px;
+}
+.social_facebook{
+    background :#3b5998;
+}
+.social_twitter{
+    background :#00acee;
+}
+.social_instagram{
+    background :#f09433;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
 }
 .segment-three a i{
     font-size:20px;

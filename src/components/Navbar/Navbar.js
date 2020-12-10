@@ -110,7 +110,7 @@ class Navbar extends Component {
                         {this.userName()}
                         
                         <li className="li_dropdown" activeClassName="main-nav">
-                            <NavLink exact to="/Parameters"><span style={styles.glyphiconDropdown} class="glyphicon glyphicon-cog"></span>
+                            <NavLink exact to="/Parameters"><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-cog"></span>
                              Mon compte </NavLink>
                         </li>
                         
@@ -319,21 +319,80 @@ class Navbar extends Component {
         )
     }
 
+    navLink = () =>{
+        const width = window.screen.width
+        if(width<=767){
+            return(
+               <>
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/Search"><span className="glyphicon glyphicon-search" 
+                        ></span></NavLink>
+                    </li>
+               
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/Accueil">Accueil </NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/Examens">Examens</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/Forums">Forums</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
+                        <NavLink exact to="/contact">Nous contacter</NavLink>
+                    </li>
+               </> 
+            )
+        }else{
+            return(
+                <>
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Search"><span className="glyphicon glyphicon-search" 
+                        ></span></NavLink>
+                    </li>
+               
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Accueil">Accueil </NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Examens">Examens</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Forums">Forums</NavLink>
+                    </li>
+                    <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/contact">Nous contacter</NavLink>
+                    </li>
+               </> 
+            )
+        }
+    }
     
     render(){
 
         return (
             <>
-            
-                <div >
-                <div className="jumbotron" >
-                    <h5 style={{marginTop:-20, marginBottom:0}}>
-                        <span className="glyphicon glyphicon-earphone" style={{marginRight:15}}></span>(+237) 600000000                        
-                    </h5>
-                    <h5 style={{marginBottom:-20 }}>
-                        <span className="glyphicon glyphicon-envelope" style={{marginRight:15}}></span>Online.School@gmail.com                       
-                    </h5>
-               </div>
+                <div>
+                    <div className="jumbotron" >
+                        <div className="social_link social_facebook">
+                            <a href="#"><i className="fa fa-facebook" aria-hidden="false"></i></a>  
+                        </div>
+                        <div className="social_link social_twitter">
+                            <a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div> 
+                        <div className="social_link social_instagram">
+                            <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
+                        </div> 
+                        <div className="social_link social_enveloppe">
+                            <a href="#"><i className="fa fa-envelope-o" aria-hidden="true"></i></a>
+                        </div>  
+                    </div>
                 </div>
            
             
@@ -350,29 +409,10 @@ class Navbar extends Component {
 
                 <div className='navbar-body'>
                 <ul className="nav navbar-nav navbar-right ul_nav" style={{ marginTop:10, marginRight:10}} >
-                    <li className="li_nav js-scroll-trigger" >
-                        <NavLink exact to="/Search"><span className="glyphicon glyphicon-search" 
-                        ></span></NavLink>
-                    </li>
-               
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Accueil">Accueil </NavLink>
-                    </li>
-                    <li className="li_nav js-scroll-trigger" >
-                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
-                    </li>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Examens">Examens</NavLink>
-                    </li>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Forums">Forums</NavLink>
-                    </li>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/contact">Nous contacter</NavLink>
-                    </li>
-                    
+                    {this.navLink()}
                     <span id="isconnectSmallScreen">
                         {this.isconnect()}
+                        
                     </span>
                     {this.isNotconnect()}
                 </ul>

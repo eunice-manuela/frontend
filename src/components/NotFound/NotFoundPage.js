@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import NotFound from '../../images/404.png'
 import '../NotFound/notFoundPage.css';
 
-const NotFoundPage = () => {
+export default class NotFoundPage extends Component {
+  render(){
   return (
       <div className="row">
         <div className="col-md-3 notFoundSpace">
@@ -17,5 +18,5 @@ const NotFoundPage = () => {
         </div>
       </div>  
   );
+  }
 }
-export default NotFoundPage;
