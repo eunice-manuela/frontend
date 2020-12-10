@@ -18,6 +18,7 @@ import ChatBox from './components/ChatBox/ChatBox';
 class App extends Component {
   
   render(){
+
     return (
       <div style={{backgroundColor:'rgba(0,0,0,0.1)'}}>
         <Router>
