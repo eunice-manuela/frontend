@@ -19,13 +19,43 @@
 
 /* 300;0,400;0,600;1,300 */
 
-
+.chatbox__social {
+    background: none;
+    height: 50px;
+    width: 300px;
+    bottom: 35px;
+    z-index: 2;
+    right: 0%;
+    position: fixed;
+}
+.chatbox__whatsapp a{
+    background: #4FCE5D;
+}
+.chatbox__facebook a {
+    background: #3b5998;
+}
+.chatbox__mail a {
+    background :#660099;
+}
+.chatbox__social__link a{
+    width:40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    margin:15px;
+    float: left;
+}
+.chatbox__social__link a i{
+    font-size:20px;
+    color:#fff;
+    padding:10px 12px;
+  }
 .chatbox__support {
     background: #f9f9f9;
     max-height: 450px;
     height: auto;
     width: 300px;
-    bottom: 35px;
+    bottom: 100px;
     z-index: 2;
     right: 35px;
     position: fixed;
@@ -52,6 +82,10 @@
 .chatbox__image--header {
     margin-right: 10px;
     padding: 10px;
+}
+.chatbox__image--header img {
+    height: 80px;
+    width: 80px;
 }
 
 .chatbox__heading--header {
@@ -89,7 +123,7 @@
 .messages__item {
     margin-top: 10px;
     background: #E0E0E0;
-    font-size: 11px; 
+    font-size: 13px; 
     padding: 8px 12px;
     max-width: 90%;
     
@@ -120,6 +154,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: auto;
     justify-content: space-between;
     padding: 10px 10px;
     background: var(--secondaryGradient);
@@ -130,11 +165,17 @@
     margin-bottom: 0px;
 }
 
-.chatbox__footer input {
+.chatbox__footer textarea {
     border: none;
     outline: none;
-    padding: 10px 10px;
-    border-radius: 30px;
+    overflow: hidden;
+    margin-right: 1%;
+    padding-top: 10px;
+    padding-bottom: -10px;
+    border-radius: 15px;
+    width: 100%;
+    height:auto;
+    max-height: 150px;
     text-align: center;
     background-color: rgba(255, 255, 255,0.8);
 }
@@ -148,7 +189,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-right: 10%;
+    margin-right: 0px;
 }
 
 .chatbox__send--footer img{
@@ -159,7 +200,7 @@
 .chatbox__button button:focus,
 .chatbox__button button:visited {
     padding: 10px;
-    z-index: 2;
+    z-index: 1;
     background: #660099;
     border: none;
     outline: none;
@@ -240,6 +281,9 @@ span.messages__dot {
 }
 @media only screen and (max-width: 600px) {
 
+    .chatbox__social{
+        left: 25%;
+    }
     .chatbox__button button,
     .chatbox__button button:focus,
     .chatbox__button button:visited {
@@ -259,6 +303,9 @@ span.messages__dot {
        
         width: 50px;
         height: 50px;
+    }
+    .chatbox__social{
+        left: 10%;
     }
     .chatbox__support {
         width: 250px;
