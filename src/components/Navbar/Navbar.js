@@ -7,6 +7,7 @@ import {AuthSignUp} from '../user/AuthSignUp';
 import '../Navbar/navbar.css';
 import reinitializeToken from '../../reinitialize_token'
 import axios from 'axios';
+import { grey } from '@material-ui/core/colors';
 //import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 //import Loader from 'react-loader-spinner'
 
@@ -135,7 +136,7 @@ class Navbar extends Component {
         if(!this.state.isconnect){
             return(
                 <>
-                    <button onClick={this.isCreateAccount} className="button" style={{backgroundColor:'rgba(0,0,0,0.8)',zIndex:3}} >
+                    <button onClick={this.isCreateAccount} className="button" style={{backgroundColor:'#c65039',zIndex:3}} >
                         <a className="navbar-brand" style={{color:'white',margin:"auto"}}>S'abonner</a>
                     </button>
                     <button onClick={this.isLogIn} className="button" style={{backgroundColor:"#660099",zIndex:3}} >
@@ -323,36 +324,32 @@ class Navbar extends Component {
         if(width<=767){
             return(
                <>
+                    <div style={{backgroundColor:"#757575", height:1,marginTop:-50, marginBottom:20}}></div>
                     <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Search"><span className="glyphicon glyphicon-search" 
-                        ></span></NavLink>
+                        <NavLink exact to="/Accueil"><span style={{textTransform:'uppercase'}}>Accueil</span></NavLink>
                     </li>
-               
+                    <div style={{backgroundColor:"#757575", height:1}}></div>
                     <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Accueil">Accueil </NavLink>
+                        <NavLink exact to="/Bibliotheque"><span style={{textTransform:'uppercase'}}>Bibliothèque</span></NavLink>
                     </li>
+                    <div style={{backgroundColor:"#757575", height:1}}></div>
                     <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
+                        <NavLink exact to="/Examens"><span style={{textTransform:'uppercase'}}>Examens</span></NavLink>
                     </li>
+                    <div style={{backgroundColor:"#757575", height:1}}></div>
                     <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Examens">Examens</NavLink>
+                        <NavLink exact to="/Forums"><span style={{textTransform:'uppercase'}}>Forums</span></NavLink>
                     </li>
+                    <div style={{backgroundColor:"#757575", height:1}}></div>
                     <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Forums">Forums</NavLink>
+                        <NavLink exact to="/contact"><span style={{textTransform:'uppercase'}}>Nous contacter</span></NavLink>
                     </li>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/contact">Nous contacter</NavLink>
-                    </li>
+                    <div style={{backgroundColor:"#757575", height:1, marginBottom:10}}></div>
                </> 
             )
         }else{
             return(
                 <>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Search"><span className="glyphicon glyphicon-search" 
-                        ></span></NavLink>
-                    </li>
-               
                     <li className="li_nav js-scroll-trigger">
                         <NavLink exact to="/Accueil">Accueil </NavLink>
                     </li>

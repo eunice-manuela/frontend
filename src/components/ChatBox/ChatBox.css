@@ -5,7 +5,7 @@
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #581B98 0.52%, #9C1DE7 100%);
+    --primaryGradient: linear-gradient(to right,#9b007d, #b80061, #c42849, #c65039);
     --secondaryGradient: linear-gradient(268.91deg, #581B98 -2.14%, #9C1DE7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
@@ -201,7 +201,7 @@
 .chatbox__button button:visited {
     padding: 10px;
     z-index: 1;
-    background: #660099;
+    background: #c65039;
     border: none;
     outline: none;
     position: fixed;

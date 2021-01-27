@@ -123,7 +123,7 @@ class Bibliotheque extends Component {
 
     cardOrLoader=()=>{
 
-        const cards=this.state.data_header.map((card)=>
+        const cards=dataCard.content.map((card)=>
             <div className="col-md-6">
                 <NavLink exact to={"/Bibliotheque/"+card._id}>
                     <div className="biblio_card" onClick={e=>console.log("====================================================================")}>
@@ -315,18 +315,12 @@ class Bibliotheque extends Component {
     }
     
 
-    render(){
+    render(){    
 
-
-        
-
-    return (
-            
-       <div className='bibliotheque'>
-           
-           {this.cardOrLoader()}
-              
-       </div>
+        return (  
+            <div className='bibliotheque'> 
+                {this.cardOrLoader()}    
+            </div>
         );
     }
 }

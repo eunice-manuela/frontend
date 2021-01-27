@@ -20,7 +20,7 @@ class App extends Component {
   render(){
 
     return (
-      <div style={{backgroundColor:'rgba(0,0,0,0.1)'}}>
+      <div className="global-app" style={{backgroundColor:'rgba(0,0,0,0.1)'}}>
         <Router>
           <Navbar/>
           

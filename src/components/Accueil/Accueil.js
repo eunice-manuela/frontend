@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import forums from '../../images/forums.jpg'
 import epreuves from '../../images/mathematics2.jpg'
 import corrections from '../../images/Corrections.jpg'
+import video from '../../videos/video.mp4'
 
         
 
@@ -100,22 +101,25 @@ export class Accueil extends Component {
                 <div className='sticky-header-accueil'>                     
                     <div className="container">
                         <div className="row">
-                            <div data-aos='fade-right' className="segmentOne col-md-6">
+                            <div className="segmentOne col-md-6">
                                 <h3 className='intro'>Vous souhaitez préparer un coucours?</h3>
                                 <h2 className='plateform-name'>Online-School,</h2>
                                 <h3 className='slogan'>L'accompagnateur proche de vous, loin de votre poche</h3>
                             </div>
-                            <div data-aos='fade-left' className="col-md-5 col-sm-5">
-                                <video  controls>
-                                    <source src="movie.mp4" type="video/mp4"/>
-                                    <source src="movie.ogg" type="video/ogg"/>
+                            <div className="col-md-5 col-sm-5">
+                                <video controls>
+                                    <source src={video} type="video/mp4"/>
                                         Your browser does not support the video tag.
                                 </video>                                          
                             </div>  
                         </div>
                     </div>
                 </div>
-
+                <div className="orange-stripe"></div>
+                <div className="orange-stripe"></div>
+                <div className="violet-stripe"></div>
+                <div className="orange-stripe"></div>
+                <div className="orange-stripe" style={{marginBottom:120}}></div>
                 <div  className="row margin-between-div">
                 <h2 style={{textAlign:"center",marginBottom:50,marginTop:-30, textTransform:'uppercase',fontWeight:"bold"}}>A propos</h2>
                     <div  className="center">
@@ -145,7 +149,7 @@ export class Accueil extends Component {
                     </div>
                 </div>
 
-                <div data-aos="fade-right" className="row">
+                <div data-aos="fade-up" className="row">
                 <h2 style={{textAlign:"center",marginBottom:50,textTransform:'uppercase',fontWeight:"bold"}}>Ambassadeur</h2>
                     <div className="col-md-12 margin-ambassador">
                         <div className="ambassador-card">

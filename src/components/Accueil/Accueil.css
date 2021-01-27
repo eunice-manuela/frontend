@@ -1,4 +1,3 @@
-
 .segmentOne{
     text-align: center;
     margin-top:100px;  
@@ -46,7 +45,7 @@
     background-repeat: no-repeat;
     background-size: 100% 100% ;
     background-position: initial;
-    background-color: #660099;
+    background-image: linear-gradient(to right, #660099,#660099,#660099, #9b007d, #b80061, #c42849, #c65039);
     margin-bottom:0px
 }
 
@@ -62,6 +61,7 @@
 video{
     width:100%;
     height:auto;
+    margin-left: 150px;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -227,6 +227,10 @@ video{
 }
 @media only screen and (max-width:600px){
 
+    video{
+        margin-left: auto;
+    }
+
     .intro{
         font-size: 15px;
     }
@@ -266,5 +270,21 @@ video{
     }
     .padding-cards{
         margin-bottom: 50px;
+    }
+    video{
+        margin-bottom: -100px;
+    }
+    .orange-stripe{
+        background-color: #c65039;
+        height: 5px;
+        margin-top: 5px;
+    }
+    .violet-stripe{
+        background-color: #660099;
+        height: 5px;
+        margin-top: 5px; 
+    }
+    .sticky-header-accueil{
+        background-image: linear-gradient(to bottom, #660099,#c65039, #c65039);
     }
 }
