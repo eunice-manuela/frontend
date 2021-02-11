@@ -4,7 +4,8 @@
 }
 .segment p{
     text-align: justify;
-    padding: 50px;
+    padding: 10px;
+    padding-top: 30px;
 }
 .segment h1{
     color: blueviolet;

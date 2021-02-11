@@ -120,32 +120,48 @@ export class Accueil extends Component {
                 <div className="violet-stripe"></div>
                 <div className="orange-stripe"></div>
                 <div className="orange-stripe" style={{marginBottom:120}}></div>
-                <div  className="row margin-between-div">
-                <h2 style={{textAlign:"center",marginBottom:50,marginTop:-30, textTransform:'uppercase',fontWeight:"bold"}}>A propos</h2>
+                <div  className="row margin-cards">
+                    <h2 style={{textAlign:"center",marginBottom:50,marginTop:-30, textTransform:'uppercase',fontWeight:"bold"}}>A propos</h2>
                     <div  className="center">
-                        <div data-aos="fade-up" className='col-xs-12 col-sm-4 segment'>
-                            <img src={epreuves} alt="concours au cameroun online-school" style={{borderRadius:10}} className='center-img'></img>
-                            <h1 style={{marginTop:30}}>Epreuves</h1>
-                            <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                            </p> 
-                            <div className="line"></div>   
+                        <div className="col-xs-12 col-sm-4 segment">
+                            <div data-aos="fade-up" className="card2">
+                                <div className="header-card">
+                                    <img  src={epreuves} alt="concours au cameroun online-school" className="img-responsive"></img>
+                                </div>
+                                <div className="body-card" style={{backgroundColor:"white"}}>
+                                <h1 style={{marginTop:30}}>Epreuves</h1>
+                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
+                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
+                                        </p>
+                                </div>                   
+                            </div>
                         </div>
-                        <div data-aos="fade-up" className='col-xs-12 col-sm-4 segment'>
-                        <img src={corrections} alt="concours au cameroun online-school" style={{borderRadius:10}} className='center-img'></img>
-                            <h1>Corrections</h1>
-                            <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                            </p>
-                            <div className="line"></div>
+                        <div className="col-xs-12 col-sm-4 segment">
+                            <div data-aos="fade-up" className="card2">
+                                <div className="header-card">
+                                    <img  src={corrections} alt="concours au cameroun online-school" className="img-responsive"></img>
+                                </div>
+                                <div className="body-card" style={{backgroundColor:"white"}}>
+                                <h1 style={{marginTop:30}}>Corrections</h1>
+                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
+                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
+                                        </p>
+                                </div>                   
+                            </div>
                         </div>
-                        <div data-aos="fade-up" className='col-xs-12 col-sm-4 segment' >
-                        <img src={forums} alt="concours au cameroun online-school" style={{borderRadius:10}} className='center-img'></img>
-                            <h1>Forums</h1>
-                            <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                            </p>
-                        </div>
+                        <div className="col-xs-12 col-sm-4 segment">
+                            <div data-aos="fade-up" className="card2">
+                                <div className="header-card">
+                                    <img  src={forums} alt="concours au cameroun online-school" className="img-responsive"></img>
+                                </div>
+                                <div className="body-card" style={{backgroundColor:"white"}}>
+                                <h1 style={{marginTop:30}}>Forums</h1>
+                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
+                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
+                                        </p>
+                                </div>                   
+                            </div>
+                        </div>        
                     </div>
                 </div>
 

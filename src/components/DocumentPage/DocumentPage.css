@@ -1,0 +1,65 @@
+.documentPage{
+    margin-bottom: 20px;
+}
+.title{
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #660099;
+    letter-spacing: normal;
+    height: auto;
+}
+.title h4{
+    font-family: monospace,'Courier New', Courier ;
+    font-size: larger;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    text-align:center;
+    font-weight: 900;
+}
+.title h5{
+    font-family: monospace,'Courier New', Courier ;
+    font-size: medium;
+    letter-spacing: normal;
+    font-style: italic;
+    
+}
+.description{
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+.description h6{
+    font-size: 12px;
+}
+
+
+
+
+@media only screen and (min-width: 600px) {
+
+  }
+@media only screen and (max-width: 600px) {
+    .title{
+        margin-top: 30px;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .title h4{
+        font-size: medium;
+    }
+    .title h5{
+        font-size: small;
+    }
+    .description h6{
+        font-size: x-small;
+    }
+
+}
+@media only screen and (max-width: 380px) {
+
+}
+@media only screen and (max-width: 280px) {
+   
+}

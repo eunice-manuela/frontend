@@ -83,6 +83,10 @@ const dataCard={
     ]
 
 }
+
+
+
+
 class Bibliotheque extends Component {
 
     state={
@@ -123,9 +127,22 @@ class Bibliotheque extends Component {
 
     cardOrLoader=()=>{
 
-        const cards=dataCard.content.map((card)=>
+        const cards=this.state.data_header.map((card)=>
             <div className="col-md-6">
-                <NavLink exact to={"/Bibliotheque/"+card._id}>
+                <NavLink exact to={{
+                    pathname:"/Bibliotheque/"+card.category+'-niveau-'+card.level+'-'+card.school+'-année-'+card.year+'-'+card.type+'-de-'+card.subject,
+                    documentHeader:{
+                        _id: card._id,
+                        category: card.category,
+                        cycle: card.cycle,
+                        level: card.level,
+                        school: card.school,
+                        subject: card.subject,
+                        subject_number: card.subject_number,
+                        type: card.type,
+                        year: card.year
+                    }
+                    }}>
                     <div className="biblio_card" onClick={e=>console.log("====================================================================")}>
                         <div className="row">
                             <div className="col-sm-5 col-md-5 col-xs-5">
@@ -318,9 +335,12 @@ class Bibliotheque extends Component {
     render(){    
 
         return (  
-            <div className='bibliotheque'> 
-                {this.cardOrLoader()}    
-            </div>
+            <>
+                <div className='bibliotheque'>   
+                    {this.cardOrLoader()}    
+                </div>
+            </>
+            
         );
     }
 }

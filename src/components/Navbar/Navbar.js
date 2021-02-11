@@ -39,13 +39,6 @@ class Navbar extends Component {
           */
     }
 
-    onSaveUser = () =>{
-        this.setState({
-            isconnect: true,
-            modalVisible: false,
-        })
-    }
-
     componentWillMount() {
         Modal.setAppElement('body');
     }
@@ -225,6 +218,13 @@ class Navbar extends Component {
         window.location.reload(false)
      }
 
+     onSaveUser = () =>{
+        this.setState({
+            isconnect: true,
+            modalVisible: false,
+        })
+    }
+
      contentModal(){
         if(this.state.log_in){
             return(
@@ -310,7 +310,6 @@ class Navbar extends Component {
                                 </div>
                             </div>                            
                         </div>
-                   
                     {this.contentModal()}
                 </Modal>
     
@@ -428,6 +427,7 @@ class Navbar extends Component {
             </script>
                          
             </nav>
+            <div style={{height:5,backgroundColor:"#c65039", marginTop:-20}}></div>
             
             </>
            
