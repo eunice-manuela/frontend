@@ -16,7 +16,10 @@ import ChatBox from './components/ChatBox/ChatBox';
 //import ClientRoute from './components/ClientRoute';
 
 class App extends Component {
-  
+
+  constructor(props) {
+    super(props);
+  }
   render(){
 
     return (
@@ -35,7 +38,6 @@ class App extends Component {
             <Route exact path="/Parameters" component={Parameters}/>
             <Route path="" component={NotFoundPage}/>
           </Switch>
-         <ChatBox/>
           <Footer/>
         </Router>  
     </div>

@@ -6,6 +6,7 @@ import forums from '../../images/forums.jpg'
 import epreuves from '../../images/mathematics2.jpg'
 import corrections from '../../images/Corrections.jpg'
 import video from '../../videos/video.mp4'
+import ChatBox from '../ChatBox/ChatBox'
 
         
 
@@ -95,6 +96,7 @@ export class Accueil extends Component {
         
 
         return(
+            <>
             <div className="accueil">
                 <div style={{marginTop:-50}}>
 
@@ -207,7 +209,8 @@ export class Accueil extends Component {
                 
                 </div>                
             </div> 
-       
+            <ChatBox/>
+            </>
         );
     }
 }

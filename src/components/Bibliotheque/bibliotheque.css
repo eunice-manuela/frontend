@@ -65,10 +65,32 @@
         margin-top: 60px;
        
   }
+  .input_year{
+    margin-top: 5px;
+    margin-left: 5px;
+    outline:none;
+  }
+  .input_year input{
+    width: 50px;
+    border: none;
+  }
+  
+  .input_year input:focus {
+    outline: none !important;
+}
+  .input_year input::placeholder{
+    color: #660099;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
   .dropdown_niveau{
         margin-top: 60px;
-        margin-left: 128px;
-        
+        margin-left: 128px;      
+  }
+  .dropdown_subject{
+    margin-top: 60px;
+    margin-left: 128px;
   }
   .check-option label span{
     margin-left: 10px;
@@ -77,7 +99,7 @@
     margin-left: 10px;
   }
   .dropdown_ecole{
-        margin-top:60px;
+    margin-top:60px;
         
   }
   .check-option{
@@ -96,9 +118,37 @@
   .sticky{
     position: sticky;
   }
-
-
+  .pagination{
+    display: flex;
+    justify-content: center;
+  }
+  .loaderPagination{
+    display: flex;
+    justify-content: center;
+  }
+  .loaderFilter{
+    display: flex;
+    justify-content: center;
+  }
+  #empty_space{
+    height: 100px;
+  }
   @media only screen and (max-width:600px){
+    .dropdown_subject{
+      margin-left: 0px;
+    }
+    .dropdown_categories{
+      margin-top: 120px;
+    }
+    .dropdown_ecole{
+      margin-top: 120px;
+    }
+    .dropdown_niveau{
+      margin-top: 120px;
+    }
+    #empty_space{
+      height: 130px;
+    }
     .bibliotheque{
         padding-right: 2%;
         padding-left: 2%;
@@ -121,3 +171,29 @@
       box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
     }
   }
+  @media only screen and (max-width:480px){
+    .dropdown_subject{
+      margin-top: 120px;
+    }
+  }
+  @media only screen and (max-width:320px){
+    #empty_space{
+      height: 200px;
+    }
+    .filter_button{
+      margin-top: 180px;
+    }
+    .dropdown_subject{
+      margin-top: 180px;
+    }
+    .dropdown_categories{
+      margin-top: 180px;
+    }
+    .dropdown_ecole{
+      margin-top: 180px;
+    }
+    .dropdown_niveau{
+      margin-top: 180px;
+    }
+  }
+ 
