@@ -3,8 +3,13 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import '../DocumentPage/DocumentPage.css'
 import Loader from 'react-loader-spinner'
 import axios from 'axios';
+import Aos from 'aos';
 import StickyBox from "react-sticky-box";
+import whatsapp from '../../images/icons/icons8-whatsapp.svg'
+import reinitializeToken from '../../reinitialize_token'
 //import StickyBox from "react-sticky-box/dist/esnext";
+import * as os from 'os'
+
 
 export default class DocumentPage extends Component {
 
@@ -36,6 +41,7 @@ export default class DocumentPage extends Component {
             sessionStorage.setItem('year',year)
             sessionStorage.setItem('cycle',cycle)
         }
+
         if(!sessionStorage.headerId){   
         }
 
@@ -53,87 +59,117 @@ export default class DocumentPage extends Component {
             loadingContent:false,
             document:{},
             sideBoxDocuments:{},
-            color:"#660099",
+            color:"#c65039",
+            colorText:"black",
+            isHide:false,
+            partId:"",
+            showButton:true,
+            showCollection:false,
 
         }
-      }
+    }
 
     componentDidMount(){
-        
+    
+        console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",navigator.platform,os);
+        Aos.init({duration : 600});
         console.log("============================",this.state.level,this.state.cycle)
-        axios.get('documents/'+this.state.headerId).then(
-            res => {
-                this.setState({
-                    document: res.data,
-                    loading: false,
-                    loadingSideBox: true
-                })
-                console.log(res.data)
-                axios.get('documents/header',{
-                    params:{
-                        limit:12,
-                        level:this.state.level,
-                        school:this.state.school,
-                        subject:this.state.subject,
-                        cycle:this.state.cycle,
-                        type:"EPREUVE"
-                    }
-                }).then(
-                    res => {
-                        this.setState({
-                            sideBoxDocuments: res.data.documents,
-                            loadingSideBox: false
-                        })
-                    },
-                    err => {
-                        console.log(err.response)
-                    }
-                ) 
-            },
-            err => {
-                console.log(err.response)
-            }
-        ) 
+        reinitializeToken().then(()=>{
+            axios.get('documents/'+this.state.headerId,{
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(
+                res => {
+                    this.setState({
+                        document: res.data,
+                        loading: false,
+                        loadingSideBox: true
+                    })
+                    console.log(res.data)
+                    reinitializeToken().then(()=>{
+                        axios.get('documents/header',{
+                            headers: {
+                                Authorization: 'Bearer ' + localStorage.getItem('token')
+                            },
+                            params:{
+                                limit:12,
+                                level:this.state.level,
+                                school:this.state.school,
+                                subject:this.state.subject,
+                                cycle:this.state.cycle,
+                                type:"EPREUVE"
+                            }
+                        }).then(
+                            res => {
+                                this.setState({
+                                    sideBoxDocuments: res.data.documents,
+                                    loadingSideBox: false
+                                })
+                            },
+                            err => {
+                                console.log(err.response)
+                            }
+                        ) 
+                    })
+                },
+                err => {
+                    console.log(err.response)
+                }
+            ) 
+        })
     }
 
     onChange_content=(item)=>{
+        window.scroll(0,0)
+        if(this.state.showCollection){
+            this.setState({
+                showCollection:!this.state.showCollection
+            })
+        }
         this.setState({
             loadingContent:true,
         })
-        axios.get('documents/'+item._id).then(
-            res => {
-                if(res.data.subject_number){
-                    let subject_number= res.data.subject_number
-                    sessionStorage.setItem('subject_number', subject_number)
+        reinitializeToken().then(()=>{
+            axios.get('documents/'+item._id,{
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(
+                res => {
+                    if(res.data.subject_number){
+                        let subject_number= res.data.subject_number
+                        sessionStorage.setItem('subject_number', subject_number)
+                        this.setState({
+                            subject_number:sessionStorage.subject_number,
+                        })
+                    } 
+                    
+                    sessionStorage.setItem('level',res.data.level);
+                    sessionStorage.setItem('school',res.data.school);
+                    sessionStorage.setItem('subject',res.data.subject);
+                    sessionStorage.setItem('type',res.data.type);
+                    sessionStorage.setItem('year',res.data.year)
+                    sessionStorage.setItem('cycle',res.data.cycle)
+                    sessionStorage.setItem('headerId', res.data._id)
                     this.setState({
-                        subject_number:sessionStorage.subject_number,
+                        document: res.data,
+                        loadingContent: false,
+                        level:res.data.level,
+                        school:res.data.school,
+                        subject:res.data.subject,
+                        type:res.data.type,
+                        year:res.data.year,
+                        cycle:res.data.cycle,
+                        headerId:res.data._id
                     })
-                } 
-                
-                sessionStorage.setItem('level',res.data.level);
-                sessionStorage.setItem('school',res.data.school);
-                sessionStorage.setItem('subject',res.data.subject);
-                sessionStorage.setItem('type',res.data.type);
-                sessionStorage.setItem('year',res.data.year)
-                sessionStorage.setItem('cycle',res.data.cycle)
-                sessionStorage.setItem('headerId', res.data._id)
-                this.setState({
-                    document: res.data,
-                    loadingContent: false,
-                    level:res.data.level,
-                    school:res.data.school,
-                    subject:res.data.subject,
-                    type:res.data.type,
-                    year:res.data.year,
-                    cycle:res.data.cycle,
-                    headerId:res.data._id
-                })
-                console.log("yyyyyyyyyyyy",res.data.year, sessionStorage.year)
-            },
-            err => {
-                console.log(err.response)
-            }
-        ) 
+                    console.log("yyyyyyyyyyyy",res.data.year, sessionStorage.year)
+                },
+                err => {
+                    console.log(err.response)
+                }
+            )
+        }) 
     }
 
     onFind_correction=()=>{
@@ -153,28 +189,39 @@ export default class DocumentPage extends Component {
            
            //params.subject_number=this.state.subject_number
         }
-        axios.get('documents/header',{
-            params: params
-        }).then(
-            res => {
-                console.log("======================================================================",res.data)
-                axios.get('documents/'+res.data.documents[0]._id).then(
-                    res => {
-                        console.log(res.data)
-                        this.setState({
-                            document: res.data,
-                            loadingContent: false,
-                        })
-                    },
-                    err => {
-                        console.log(err.response)
-                    }
-                ) 
-            },
-            err => {
-                console.log(err.response)
-            }
-        )
+        reinitializeToken().then(()=>{
+            axios.get('documents/header',{
+                params: params,
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(
+                res => {
+                    console.log("======================================================================",res.data)
+                    reinitializeToken().then(()=>{
+                        axios.get('documents/'+res.data.documents[0]._id,{
+                            headers: {
+                                Authorization: 'Bearer ' + localStorage.getItem('token')
+                            }
+                        }).then(
+                            res => {
+                                console.log(res.data)
+                                this.setState({
+                                    document: res.data,
+                                    loadingContent: false,
+                                })
+                            },
+                            err => {
+                                console.log(err.response)
+                            }
+                        ) 
+                    })
+                },
+                err => {
+                    console.log(err.response)
+                }
+            )
+        })
     }
     auteur=()=>{
         if(this.state.document.type){
@@ -305,21 +352,24 @@ export default class DocumentPage extends Component {
             )
         }  
     }
+
     exercice=(exercices)=>{
         if(exercices){
             const exos = exercices.map((exo)=>
                 <div>
-                    <div id="justifyContentExercice">
+                    <div id="justifyContentExercice" onClick={e=>this.hide_show(exo.number)}>
                         <div><h5 className="exercice_title">Exercices {exo.number} </h5></div>
-                        <div><h5 className="glyphicon glyphicon-menu-down hide_content_icon"></h5></div>
+                        <div>{this.iconIsHide(exo.number)}</div>
                     </div>
                     <div style={{height:1,backgroundColor:"#c65039"}}></div>
-                    <p  className="exercice_statement">{exo.statement}</p>
-                    <div>
-                        {this.figure(exo.figure)}
-                    </div>
-                    <div>
-                        {this.ex_question(exo.question)}
+                    <div id={exo.number}>
+                        <p  className="exercice_statement">{exo.statement}</p>
+                        <div>
+                            {this.figure(exo.figure)}
+                        </div>
+                        <div>
+                            {this.ex_question(exo.question)}
+                        </div>
                     </div>
                 </div>
             )
@@ -328,6 +378,36 @@ export default class DocumentPage extends Component {
                     {exos}
                 </div>
             )
+        }
+    }
+
+    iconIsHide=(id)=>{
+        if(this.state.isHide){
+            if(this.state.partId===id){
+                return <h3 className="glyphicon glyphicon-menu-right hide_content_icon"></h3>
+            }else{
+                return <h3 className="glyphicon glyphicon-menu-down hide_content_icon"></h3>
+            }
+        }else{
+            return <h3 className="glyphicon glyphicon-menu-down hide_content_icon"></h3>
+        }
+    }
+
+    hide_show=(id)=>{
+        this.setState({
+            partId:id
+        })
+        let x = document.getElementById(id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            this.setState({
+                isHide:false
+            })
+        } else {
+            x.style.display = "none";
+            this.setState({
+                isHide:true
+            })
         }
     }
 
@@ -350,18 +430,19 @@ export default class DocumentPage extends Component {
                 const part = this.state.document.content.part.map((p)=>
                     <div className="part">
                         <h5 style={{color:'black', fontSize:15}}>{this.state.document.content.description}</h5>
-                        <div id="justifyContentPart">
+                        <div id="justifyContentPart" onClick={e=>this.hide_show(p.number+p.title)}>
                             <div><h3 className="part_title">Partie {p.number}: {p.title}</h3></div>
-                            <div><h3 className="glyphicon glyphicon-menu-down hide_content_icon"></h3></div>
-                            
+                            <div>{this.iconIsHide(p.number+p.title)}</div>   
                         </div>
                        
                         <div style={{height:1,backgroundColor:"#c65039"}}></div>
-                        <div>
-                            {this.question(p.question)}
-                        </div>
-                        <div>
-                            {this.exercice(p.exercice)}
+                        <div id={p.number+p.title}>
+                            <div>
+                                {this.question(p.question)}
+                            </div>
+                            <div>
+                                {this.exercice(p.exercice)}
+                            </div>
                         </div>
                     </div>
                 )
@@ -377,8 +458,8 @@ export default class DocumentPage extends Component {
     liColor=(item)=>{
         if(item._id===this.state.headerId){
             return(
-                <><span className="glyphicon glyphicon-check" style={{marginRight:10, color:this.state.color}}></span><span style={{color: this.state.color,fontWeight:'bold',fontSize:16}}>
-                    {item.type} de {item.subject} {item.subject_number}, Année {item.year} Niveau {item.level}-{item.school}-{item.cycle}</span></>
+                <><span className="glyphicon glyphicon-check" style={{marginRight:10, color:this.state.color}}></span><span style={{color: this.state.colorText,fontWeight:'bolder',fontSize:16}}>
+                    {item.type} de {item.subject} {item.subject_number}, Année {item.year} Niveau {item.level} - {item.school} - {item.cycle}</span></>
             )
         }else{
             return(
@@ -387,6 +468,7 @@ export default class DocumentPage extends Component {
             )
         }
     }
+
     sideBoxBody=()=>{
         if(this.state.loadingSideBox){
             return(
@@ -415,6 +497,60 @@ export default class DocumentPage extends Component {
         }
     }
 
+    StickyBox=()=>{
+        return(
+            <StickyBox offsetTop={50} offsetBottom={20}>
+                <div className="sideBoxHeader">
+                    <h3>Dans la même collection</h3>
+                </div>
+                <div className="sideBoxBody">
+                    <ul>
+                        {this.sideBoxBody()}
+                    </ul>
+                </div>
+                <div className="shareBoxHeader">
+                    <h4 style={{textAlign:'center',paddingTop:10,}}>Partager</h4>
+                </div>
+                <div className="sideBoxFooter">
+                    <div className="social_link social_facebook">
+                        <a href="#"><i className="fa fa-facebook" aria-hidden="false"></i></a>  
+                    </div>
+                    <div className="social_link social_twitter">
+                        <a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div> 
+                    <div className="social_link social_instagram">
+                        <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
+                    </div> 
+                    <div className="social_link">
+                        <a href="#"><img src={whatsapp}  alt="image" className="img-responsive" /></a>  
+                    </div>
+                </div>
+            </StickyBox>
+        )
+    }
+    collection_box=()=>{
+        if(this.state.showCollection){
+            return (
+                <div className="collection_box" data-aos='zoom-in-left'>
+                    {this.StickyBox()}
+                </div>
+            )
+        }
+    }
+    showCollectionBox=()=>{
+        this.setState({
+            showCollection:!this.state.showCollection,
+        })
+    }
+    Collection_button = ()=>{
+        if(this.state.showButton){
+            return(
+                <div className="collection_button">
+                    <button onClick={this.showCollectionBox}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+            )
+        } 
+    }
     content=()=>{
         return(
             <>
@@ -426,16 +562,10 @@ export default class DocumentPage extends Component {
                 <div className="col-xs-12 col-sm-8 col-md-8 document_center">
                     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                         {this.part()}
-                        <StickyBox className="stickySideBox" offsetTop={50} offsetBottom={20}>
-                            <div className="sideBoxHeader">
-                                <h3>Dans la même collection</h3>
-                            </div>
-                            <div className="sideBoxBody">
-                                <ul>
-                                    {this.sideBoxBody()}
-                                </ul>
-                            </div>
-                        </StickyBox>
+                        {this.collection_box()}
+                        <div className="stickySideBox">
+                            {this.StickyBox()}
+                        </div>
                     </div>
                 </div>
                 <div className="col-xs-0 col-sm-1 col-md-1">  
@@ -483,7 +613,7 @@ export default class DocumentPage extends Component {
     button_correction=()=>{
         if(!this.state.loadingContent && !this.state.loading){
             return(
-                <button className="button button_correction navbar-brand" style={{backgroundColor:"rgba(0,0,0,0.1)",zIndex:0}}
+                <button className="button button_correction navbar-brand" style={{backgroundColor:"white",zIndex:0}}
                     onClick={e=>this.onFind_correction()}>
                     <a style={{color:'#660099',textTransform:'uppercase',fontSize:14, fontWeight:'bold'}}>
                         Voir la correction
@@ -493,18 +623,34 @@ export default class DocumentPage extends Component {
         }
     }
 
+    goToTop=()=>{
+        window.scrollTo(0, 0)
+    }
+    buttonGoToTop=()=>{
+        if(!this.state.loadingContent && !this.state.loading){
+            return(
+                <div className="goToTop" data-aos='zoom-in-up'>
+                    <button onClick={this.goToTop}><p><span>Haut De page </span><span className="glyphicon glyphicon-chevron-up"></span></p></button>
+                </div>
+            )
+        }
+    }
+
     render(){
         return(
-            <div style={{backgroundColor:"white"}}>
+            <div >
                 <div className="row"> 
                     {this.docContentOrLoader()}
                 </div>
                 <div style={{justifyContent:"center",display:"flex"}}>
                     {this.button_correction()}
                 </div>
+                <div>
+                    {this.Collection_button()}
+                </div>
+                    {this.buttonGoToTop()}
             </div>
         )
         
     }
 }
-

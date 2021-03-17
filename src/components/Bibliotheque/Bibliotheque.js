@@ -87,7 +87,7 @@ const dataCard={
 
 }
 
-const limit = 1
+const limit = 8
 const pageRangeDisplayed = 5
 
 class Bibliotheque extends Component {

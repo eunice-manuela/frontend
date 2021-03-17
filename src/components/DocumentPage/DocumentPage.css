@@ -127,6 +127,7 @@ p{
 #justifyContentPart{
     justify-content: space-between;
     display: flex;
+    cursor: pointer;
 }
 #justifyContentExercice{
     justify-content: space-between;
@@ -174,6 +175,11 @@ p{
     border-top-right-radius: 10px;
     margin-top: -21px;
 }
+.sideBoxBody{
+    background-color: white;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
 .sideBoxBody ul{
     padding:20px;
     list-style: none;
@@ -187,12 +193,26 @@ p{
 }
 .sideBoxBody ul li:hover{
     font-size: 16px;
+    font-weight: bolder;
+    color: black;
+}
+.sideBoxFooter{
+    margin-top: 25px;
+    background-color: white;
+}
+.shareBoxHeader{
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.shareBoxHeader h4{
+    text-align: center;
+    padding-top: 10px;
+    text-transform: uppercase;
     font-weight: bold;
-    color: #c65039;
-
+    font-size: 15px;
 }
 .button_correction{
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     margin-top:50px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     border-radius: 0px;
@@ -201,12 +221,114 @@ p{
   .button_correction:hover{
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2);
   }
+  .collection_button{
+      display: none;
+  }
+  .collection_button button,
+  .collection_button button:focus,
+  .collection_button button:visited {
+      padding: 10px;
+      z-index: 1;
+      background:#660099;
+      border: none;
+      outline: none;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+  }
+  .collection_button button:hover{
+      box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.5);
+  }
+  .collection_button button i {
+      font-size: x-large;
+      color:#fafafa;
+  }
 
-
+  .collection_box {
+    display: none;
+    background: #f9f9f9;
+    max-height: 450px;
+    height: auto;
+    width: 300px;
+    bottom: 120px;
+    z-index: 2;
+    right: 35px;
+    position: fixed;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.goToTop{
+    position: fixed;
+    bottom: 10px;
+    right: 43%; 
+}
+.goToTop button{
+    z-index: 1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: auto;
+    width: 200px;
+    border-radius: 50px;
+    border: none;
+    background-color: white;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.goToTop button:hover{
+    box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.1);
+}
+.goToTop button:focus{
+    outline:none !important;
+}
+.goToTop button p{
+    color: #660099;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    text-indent: 0px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 80%;
+}
+/*html{
+    scroll-behavior: smooth;
+}*/
 @media only screen and (min-width: 600px) {
 
   }
 @media only screen and (max-width: 600px) {
+    .goToTop button p{
+        font-size: 13px;
+        padding-top: 8px;
+        padding-bottom: 5px
+    }
+    .goToTop button{
+        width: 150px;
+    }
+    .goToTop{
+        right: 30%; 
+    }
+    .collection_button{
+        display: block;
+    }
+    .collection_box {
+        display: block;
+        width: 300px;
+    }
+    .collection_button button,
+    .collection_button button:focus,
+    .collection_button button:visited {
+       
+        width: 60px;
+        height: 60px;
+    }
     .stickySideBox{
         display: none;
     }
@@ -249,7 +371,19 @@ p{
     }
 
 }
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 340px) {
+
+    .collection_button button,
+    .collection_button button:focus,
+    .collection_button button:visited {
+       
+        width: 50px;
+        height: 50px;
+    }
+    .collection_box {
+        width: 250px;
+        bottom: 100px;
+    }
 
 }
 @media only screen and (max-width: 280px) {

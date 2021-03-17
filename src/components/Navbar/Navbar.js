@@ -7,9 +7,9 @@ import {AuthSignUp} from '../user/AuthSignUp';
 import '../Navbar/navbar.css';
 import reinitializeToken from '../../reinitialize_token'
 import axios from 'axios';
-import { grey } from '@material-ui/core/colors';
-//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-//import Loader from 'react-loader-spinner'
+import whatsapp from '../../images/icons/whatsapp.svg'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 
 
 
@@ -26,6 +26,7 @@ class Navbar extends Component {
             zIndex: 2,
             isconnect:false,
             user:'',
+            disconnectLoading:false,
         }
         /*
         // code to detect when user refresh the page
@@ -113,14 +114,33 @@ class Navbar extends Component {
                         </li>
                         <li className="divider"></li>
                         <li className="li_dropdown" activeClassName="main-nav" onClick={()=>{
-                            localStorage.clear()
-                            this.setState({isconnect: false})
+                            this.setState({                              
+                                disconnectLoading:true
+                            })
+                            let data ={
+                                id:localStorage.deviceId
+                            }
+                            axios.patch('/users/update/connectedDevice/'+localStorage.userId, data)
+                                .then(res=>{
+                                    this.setState({
+                                        disconnectLoading:false,
+                                        isconnect: false,
+                                    })
+                                    localStorage.clear()
+                                    console.log('========================================',res.data.connectedDevice)
+                                })
                         }}>
-                            <a><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-log-out"></span>
-                            Déconnexion </a>
+                            <a><span style={styles.glyphiconDropdown} className="glyphicon glyphicon-log-out"></span>Déconnexion </a>
+                            
                         </li>
                     </ul>
-                   
+                    <Loader
+                        type="Oval"//Oval Rings
+                        color="#660099"
+                        visible={this.state.disconnectLoading}
+                        height={40}
+                        width={40}
+                    />
                 </>
             )
         }
@@ -266,8 +286,8 @@ class Navbar extends Component {
                         },
                         content: {
                         position: 'absolute',
-                        top: '30px',                      
-                        bottom:'20px',
+                        top: '75px',                      
+                        bottom:'75px',
                         height:'auto',
                         right:this.customMargin(),
                         left:this.customMargin(),
@@ -384,9 +404,9 @@ class Navbar extends Component {
                         <div className="social_link social_instagram">
                             <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
                         </div> 
-                        <div className="social_link social_enveloppe">
-                            <a href="#"><i className="fa fa-envelope-o" aria-hidden="true"></i></a>
-                        </div>  
+                        <div className="social_link">
+                            <a href="#"><img src={whatsapp}  alt="image" className="img-responsive" /></a>  
+                        </div> 
                     </div>
                 </div>
            

@@ -4,3 +4,10 @@ form{
 #loader{
   margin: 0 auto;
 }
+table {
+  margin-right: 8%;
+  margin-left: 8%;
+  border: 1px solid gray;
+}
+@media only screen and (max-width: 600px) {
+}

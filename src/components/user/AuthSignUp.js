@@ -3,6 +3,7 @@ import '../user/auth.css'
 import axios from 'axios'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import Platform from 'react-platform-js'
 
 export class AuthSignUp extends Component {
 
@@ -21,6 +22,20 @@ export class AuthSignUp extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
+
+        let [month, date, year]    = new Date().toLocaleDateString("en-US").split("/")
+        let [hour, minute, second] = new Date().toLocaleTimeString("en-US").split(/:| /)
+        let time = "date: "+date+"/"+month+"/"+year+" à "+hour+":"+minute+":"+second
+
+        let deviceType=""
+
+        if(Platform.DeviceType){
+            deviceType=Platform.DeviceType
+        }
+        let device = Platform.OS+"-"+deviceType+"-"+Platform.Browser+Platform.BrowserVersion+" "+time
+        
+       
+        fields["mydevice"] = device
 
         // pseudo
         if(!fields["pseudo"]){
@@ -79,9 +94,12 @@ export class AuthSignUp extends Component {
         return formIsValid
     }
 
-    handleChange(field, e){         
+    handleChange(field, e){  
+        
+
         let fields = this.state.fields;
-        fields[field] = e.target.value;        
+        fields[field] = e.target.value;
+                
         this.setState({fields});
     }
 
@@ -91,7 +109,9 @@ export class AuthSignUp extends Component {
         let startTime = Date.now()
 
         e.preventDefault();
+        
         this.setState({loading: true})
+        
         
         if(this.handleValidation()){
 
@@ -101,7 +121,9 @@ export class AuthSignUp extends Component {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('expiresIn' ,res.data.expiresIn)
                 localStorage.setItem('userId', res.data.userId)
+                localStorage.setItem('deviceId', res.data.deviceId)
                 localStorage.setItem('startTime', startTime)
+                console.log(res.data)
                 this.props.data.saveUser()
                 this.setState({loading: false})
             })
@@ -130,7 +152,7 @@ export class AuthSignUp extends Component {
 
     render(){
         return (
-            <div style={{marginTop:250}}>
+            <div style={{marginTop:250,justifyContent:'center',display:'flex'}}>
                 <form onSubmit= {this.handleSubmit.bind(this)} className="needs-validation">
                     <div >
                         <p style={{color: "red", textAlign: "center"}}>{this.state.errors["form"]}</p>
@@ -155,7 +177,7 @@ export class AuthSignUp extends Component {
                         onChange={this.handleChange.bind(this, "confirmPassword")} value={this.state.fields["confirmPassword"] || ''} required />
                         <span style={{color: "red"}}>{this.state.errors["confirmPassword"]}</span>
                     </div>
-                    <div id='loader'>
+                    <div style={{justifyContent:'center',display:'flex'}}>
                         <Loader
                         type="ThreeDots"//Oval Rings
                         color="#660099"
