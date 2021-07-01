@@ -4,6 +4,7 @@ import axios from 'axios'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 import Platform from 'react-platform-js'
+import { nanoid } from 'nanoid'
 
 
 export class AuthLogin extends Component {
@@ -26,6 +27,10 @@ export class AuthLogin extends Component {
             text:"mot de passe oublié?",
             userIdPassword:"",
         }
+    }
+    
+    refreshNavBar=()=> {
+        window.location.reload(false)
     }
 
     handleSubmitPassword = e =>{
@@ -95,7 +100,10 @@ export class AuthLogin extends Component {
             })
     }
     handleSubmit = e => {
-
+        let rng1 = Math.floor(Math.random() * 100).toString()
+        let rng2 = Math.floor(Math.random() * 100).toString()
+        let ambassador = "Ambassador"
+        console.log(((rng1.concat(rng2)).concat(ambassador)).concat(nanoid(4)))
         let [month, date, year]    = new Date().toLocaleDateString("en-US").split("/")
         let [hour, minute, second] = new Date().toLocaleTimeString("en-US").split(/:| /)
         let time = "date: "+date+"/"+month+"/"+year+" à "+hour+":"+minute+":"+second
@@ -128,6 +136,7 @@ export class AuthLogin extends Component {
                 console.log(res.data)
                 this.props.data.saveUser()
                 this.setState({loading: false})
+                this.refreshNavBar()
             })
             .catch(err => {
                 if(err.response.data){

@@ -12,10 +12,19 @@ export class AuthSignUp extends Component {
    
         this.state = {
             fields: {},
+            fieldCode:{},
             errors: {},
+            codeError:{},
             loading:false,
+            loadingCode:false,
+            form:"first",
+            code:'',
         }
-     }
+    }
+
+    refreshNavBar=()=> {
+        window.location.reload(false)
+    }
 
     handleValidation=()=>{
 
@@ -94,9 +103,14 @@ export class AuthSignUp extends Component {
         return formIsValid
     }
 
+    handleChangeCode(field, e){
+        let fieldCode = this.state.fieldCode;
+        fieldCode[field]= e.target.value
+
+        this.setState({fieldCode})
+    }
     handleChange(field, e){  
         
-
         let fields = this.state.fields;
         fields[field] = e.target.value;
                 
@@ -114,10 +128,9 @@ export class AuthSignUp extends Component {
         
         
         if(this.handleValidation()){
-
+            console.log(this.state.fields)
             axios.post('users/signup', this.state.fields)
             .then(res => {
-                console.log(res.data)
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('expiresIn' ,res.data.expiresIn)
                 localStorage.setItem('userId', res.data.userId)
@@ -126,6 +139,7 @@ export class AuthSignUp extends Component {
                 console.log(res.data)
                 this.props.data.saveUser()
                 this.setState({loading: false})
+                this.refreshNavBar()
             })
             .catch(err => {
                 if(typeof err.response !== "undefined"){
@@ -149,10 +163,63 @@ export class AuthSignUp extends Component {
            console.log(this.state.errors)
         }
     }
+    handleValidationCode=()=>{
 
-    render(){
-        return (
-            <div style={{marginTop:250,justifyContent:'center',display:'flex'}}>
+        let codeIsValid = true
+        let errors={}
+        if(this.state.fieldCode["code"]){
+
+            let am = this.state.fieldCode["code"].substr(0,2)
+            let randPart= this.state.fieldCode["code"].substr(2,2)
+            if(this.state.fieldCode["code"].length>10 || this.state.fieldCode["code"].length<8){
+                codeIsValid = false
+                errors['code']="code incorrect taille"
+            }
+            if(am!=="AM"){
+                codeIsValid = false
+                errors['code']="code incorrect AM"
+            }
+            if(!(/^\d+$/.test(randPart))){
+                codeIsValid = false
+                errors['code']="code incorrect rand"
+            }
+        }else{
+            codeIsValid = false
+            errors['code']="Entrez un code"
+        }
+        
+        this.setState({
+            codeError:errors
+        })
+        return codeIsValid  
+    }
+
+    handleSubmitCode=()=>{
+        if(this.handleValidationCode()){
+            this.setState({
+                loadingCode: true
+            })
+            axios.post('users/signup/verifyCode', this.state.fieldCode)
+            .then(res => {
+                this.state.fields["AM_Id"]=res.data.userId
+                console.log(this.state.fields)
+                this.setState({
+                    loadingCode: false,
+                    form: "second"
+                })
+            })
+            .catch(err => {
+                console.log(err.response.data.message)
+                let errors={}
+                errors['code']=err.response.data.message
+                this.setState({codeError: errors, loadingCode: false})
+            })
+        }
+    }
+
+    form=()=>{
+        
+            return(
                 <form onSubmit= {this.handleSubmit.bind(this)} className="needs-validation">
                     <div >
                         <p style={{color: "red", textAlign: "center"}}>{this.state.errors["form"]}</p>
@@ -189,7 +256,16 @@ export class AuthSignUp extends Component {
                     <div className='buttonModal'>
                         <input type="submit" className="btn btn-primary form-control" value="S'abonner" />
                     </div>
+                    
                 </form>
+            )
+        
+    }
+
+    render(){
+        return (
+            <div style={{marginTop:250,justifyContent:'center',display:'flex'}}>
+                {this.form()}
             </div>
         );
     }

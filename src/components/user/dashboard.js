@@ -65,8 +65,8 @@ export class dashboard extends Component {
             if(documents.length>=1){
               return (
                   <div className="container-fluid table">
-            <h4 style={{marginTop:70, color:'#660099'}}>Toutes mes souscriptions</h4>
-                      <div className="table-wrapper-scroll-y my-custom-scrollbar">
+                        <h4 style={{color:'#660099'}}>Toutes mes souscriptions</h4>
+                        <div className="table-wrapper-scroll-y my-custom-scrollbar">
                           <table className="table table-bordered table-hover mb-0">
                               <thead style={{backgroundColor:'#660099'}}>
                                   <tr >

@@ -62,10 +62,13 @@ class Navbar extends Component {
                         console.log('userData',res.data.user)
                     },
                     err => {
-                        if(err.response.statusText === 'Unauthorized'){
-                            localStorage.clear()
-                            this.setState({isconnect: false})
+                        if(err.response.statusText){
+                            if(err.response.statusText === 'Unauthorized'){
+                                localStorage.clear()
+                                this.setState({isconnect: false})
+                            }
                         }
+                        
                         console.log(err.response)
                     }
                 )
@@ -95,7 +98,6 @@ class Navbar extends Component {
         if(this.state.isconnect){
             return(
                 <>
-                 
                     <button className="button navbar-brand" data-toggle="dropdown" style={{backgroundColor:"#660099"}}>
                         <a style={{color:'white'}}>{this.state.user.pseudo} <span className="caret"></span></a>
                     </button>
@@ -145,32 +147,18 @@ class Navbar extends Component {
             )
         }
     }
-    isNotconnect=()=>{
-        if(!this.state.isconnect){
-            return(
-                <>
-                    <button onClick={this.isCreateAccount} className="button" style={{backgroundColor:'#c65039',zIndex:3}} >
-                        <a className="navbar-brand" style={{color:'white',margin:"auto"}}>S'abonner</a>
-                    </button>
-                    <button onClick={this.isLogIn} className="button" style={{backgroundColor:"#660099",zIndex:3}} >
-                        <a className="navbar-brand" style={{color:"white",margin:"auto"}}>Connexion</a>
-                    </button>
-                </>
-            )
-        }
-    }
+    
 
     glyphiconSignUp=()=>{
         if(this.state.create_Account){
             return(
                 <>
-                <div style={{height:2,backgroundColor:'white',marginRight:50,marginLeft:50}}>                    
-                </div>
-                <div>
-                    <span className="glyphicon glyphicon-menu-down"></span>
-                </div>
-                </>
-                
+                    <div style={{height:2,backgroundColor:'white',marginRight:50,marginLeft:50}}>                    
+                    </div>
+                    <div>
+                        <span className="glyphicon glyphicon-menu-down"></span>
+                    </div>
+                </>  
             )
         }
     }
@@ -178,11 +166,11 @@ class Navbar extends Component {
         if(this.state.log_in){
             return(
                 <>
-                <div style={{height:2,backgroundColor:'white',marginRight:50,marginLeft:50}}>                    
-                </div>
-                <div>
-                    <span className="glyphicon glyphicon-menu-down"></span>
-                </div>
+                    <div style={{height:2,backgroundColor:'white',marginRight:50,marginLeft:50}}>                    
+                    </div>
+                    <div>
+                        <span className="glyphicon glyphicon-menu-down"></span>
+                    </div>
                 </>
             )
         }
@@ -209,8 +197,7 @@ class Navbar extends Component {
             log_in:true,
             create_Account:false,
             modalVisible:true,
-            zIndex:1,
-           
+            zIndex:1, 
         })
     } 
 
@@ -219,8 +206,7 @@ class Navbar extends Component {
             create_Account:true,
             log_in:false,
             modalVisible:true,
-            zIndex:1
-           
+            zIndex:1 
         })
     }
 
@@ -230,15 +216,14 @@ class Navbar extends Component {
             modalVisible:false,
             log_in:false,
             zIndex:2,
-           
         })
         this.refreshNavBar()
     }
     refreshNavBar=()=> {
         window.location.reload(false)
-     }
+    }
 
-     onSaveUser = () =>{
+    onSaveUser = () =>{
         this.setState({
             isconnect: true,
             modalVisible: false,
@@ -305,7 +290,7 @@ class Navbar extends Component {
                         <p onClick={this.closeModal} style={{position:"relative",fontSize:30,color:'rgba(0,0,0,0.8)',cursor:'pointer'}}
                          className="glyphicon glyphicon-remove"></p>
                             <div>
-                                <span className="onlineModal" >OnlineSchool</span>
+                                <span className="onlineModal" >kkkk</span>
                                 
                             </div>
                             <div style={{padding:20}}>
@@ -340,52 +325,27 @@ class Navbar extends Component {
 
     navLink = () =>{
         const width = window.screen.width
-        if(width<=767){
-            return(
-               <>
-                    <div style={{backgroundColor:"#757575", height:1,marginTop:-50, marginBottom:20}}></div>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Accueil"><span style={{textTransform:'uppercase'}}>Accueil</span></NavLink>
-                    </li>
-                    <div style={{backgroundColor:"#757575", height:1}}></div>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Bibliotheque"><span style={{textTransform:'uppercase'}}>Bibliothèque</span></NavLink>
-                    </li>
-                    <div style={{backgroundColor:"#757575", height:1}}></div>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Examens"><span style={{textTransform:'uppercase'}}>Examens</span></NavLink>
-                    </li>
-                    <div style={{backgroundColor:"#757575", height:1}}></div>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/Forums"><span style={{textTransform:'uppercase'}}>Forums</span></NavLink>
-                    </li>
-                    <div style={{backgroundColor:"#757575", height:1}}></div>
-                    <li className="li_nav js-scroll-trigger" data-toggle="collapse" data-target="#collapse_target">
-                        <NavLink exact to="/contact"><span style={{textTransform:'uppercase'}}>Nous contacter</span></NavLink>
-                    </li>
-                    <div style={{backgroundColor:"#757575", height:1, marginBottom:10}}></div>
-               </> 
-            )
-        }else{
+        if(localStorage.isconnect){
             return(
                 <>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Accueil">Accueil </NavLink>
+                   
+                   <li className="li_nav js-scroll-trigger">
+                        <NavLink exact to="/Bibliotheque">Prédictions</NavLink>
                     </li>
                     <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Bibliotheque">Bibliothèque</NavLink>
+                        <NavLink exact to="/Examens">CArtographie</NavLink>
                     </li>
                     <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Examens">Examens</NavLink>
+                        <NavLink exact to="/Notifications">Rapport</NavLink>
                     </li>
                     <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/Forums">Forums</NavLink>
-                    </li>
-                    <li className="li_nav js-scroll-trigger">
-                        <NavLink exact to="/contact">Nous contacter</NavLink>
+                        <NavLink exact to="/createAmbassadorAccount">Administateur</NavLink>
                     </li>
                </> 
+               
             )
+        }else{
+            return(<></>)
         }
     }
     
@@ -393,22 +353,7 @@ class Navbar extends Component {
 
         return (
             <>
-                <div>
-                    <div className="jumbotron" >
-                        <div className="social_link social_facebook">
-                            <a href="#"><i className="fa fa-facebook" aria-hidden="false"></i></a>  
-                        </div>
-                        <div className="social_link social_twitter">
-                            <a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
-                        </div> 
-                        <div className="social_link social_instagram">
-                            <a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                        </div> 
-                        <div className="social_link">
-                            <a href="#"><img src={whatsapp}  alt="image" className="img-responsive" /></a>  
-                        </div> 
-                    </div>
-                </div>
+                
            
             
             <nav className="navbar navbar-expand-sm navbar-default sticky" style={{zIndex:this.state.zIndex, Bottom:0,minHeight:60}}>
@@ -429,7 +374,7 @@ class Navbar extends Component {
                         {this.isconnect()}
                         
                     </span>
-                    {this.isNotconnect()}
+                    
                 </ul>
                 </div>
 

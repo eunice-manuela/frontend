@@ -1,216 +1,239 @@
-import React, {Component} from 'react';
-import '../Accueil/Accueil.css';
-import Aos from 'aos';
-import "aos/dist/aos.css";
-import forums from '../../images/forums.jpg'
-import epreuves from '../../images/mathematics2.jpg'
-import corrections from '../../images/Corrections.jpg'
-import video from '../../videos/video.mp4'
-import ChatBox from '../ChatBox/ChatBox'
+import React, { Component } from 'react';
+import axios from 'axios'
+import logo from '../../images/logo.jpg';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
+import Platform from 'react-platform-js'
+import { nanoid } from 'nanoid'
+
+
 
         
-
+const screenWith = window.innerWidth
 export class Accueil extends Component {
 
-    constructor(){
-        super()
-        this.state={
-            moreCard:false,
+    constructor(props){
+        super(props);
+   
+        this.state = {
+            fields: {},
+            errors: {},
+            loading:false,
+            operateur:"Opérateur",
+            success:""
         }
     }
 
-    componentDidMount() {   
-        Aos.init({duration : 1500});
-      }
+    refreshNavBar=()=> {
+        window.location.reload(false)
+    }
+
+
+    handleValidation=()=>{
+
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        
+
+        // pseudo
+       /* if(!fields["pseudo"]){
+            formIsValid = false;
+            errors["pseudo"] = "le pseudo doit être renseigné";
+         }
+        if(typeof fields["pseudo"] !== "undefined"){
+            if(fields["pseudo"].length<3){
+                formIsValid = false;
+                errors["pseudo"] = "le pseudo doit avoir aumoins 3 caractères"
+            }
+        } */
+         /*
+         if(typeof fields["pseudo"] !== "undefined"){
+            if(!fields["pseudo"].match(/^[a-zA-Z]+$/)){
+               formIsValid = false;
+               errors["pseudo"] = "Uniquement des lettres";
+            }        
+         }
+         */
+            //phone
+       /* if(!fields["phone"]){
+            formIsValid = false;
+            errors["phone"]="L'adresse mail doit être renseignée";
+        }
+
+        if(fields["phone"].length!==9){
+            formIsValid = false;
+            errors["phone"]= "Numéro incorrect"
+        }
+        if(!(/^\d+$/.test(fields["phone"]))){
+            formIsValid = false;
+            errors["phone"]= "Veillez utiliser uniquement des nombres"
+        }else{
+            let StringNumber = fields["phone"].trim()
+            let firstLetter = StringNumber.substr(0,1)
+            if(firstLetter!=="6"){
+                errors["phone"]="Le numero de télephone doit commencer par 6"
+            }
+        } */
+
+        //Operateur
+        
+      /*  if(this.state.operateur==="Opérateur"){
+            errors["operateur"]="Veillez renseigner L'opérateur"
+        }  */
+
+        //Email
+        if(!fields["email"]){
+            formIsValid = false;
+            errors["email"] = "L'adresse mail doit être renseignée";
+         }
+   
+         if(typeof fields["email"] !== "undefined"){
+            let lastAtPos = fields["email"].lastIndexOf('@');
+            let lastDotPos = fields["email"].lastIndexOf('.');
+
+            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+               formIsValid = false;
+               errors["email"] = "Adresse mail non valide";
+             }
+        } 
+
+        // mot de passe
+
+        if(!fields["password"]){
+            formIsValid = false;
+            errors["password"] = "Un mot de passe doit être renseigné"
+        }
+        if(typeof fields["password"] !== "undefined"){
+            if(fields["password"].length < 8){
+                formIsValid = false;
+                errors["password"] = "le mot de passe doit avoir aumoins 8 caractères"
+            }
+        }
+
+        this.setState({errors: errors})
+
+        return formIsValid
+    }
+
+    handleChange(field, e){  
+        
+
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+                
+        this.setState({fields});
+    }
+
+    handleSubmit=(e)=>{
+        console.log(this.state.fields)
+        let errors= {}
+        let startTime = Date.now()
+
+        e.preventDefault();
+        
+        this.setState({loading: true})
+        localStorage.setItem('isconnect', true)
+        this.refreshNavBar()
+        
+        
+        if(this.handleValidation()){
+            axios.post('user/', JSON.stringify(this.state.fields))
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('expiresIn' ,res.data.expiresIn)
+                localStorage.setItem('userId', res.data.userId)
+                localStorage.setItem('deviceId', res.data.deviceId)
+                localStorage.setItem('startTime', startTime)
+                localStorage.setItem('disabled',true)
+                //this.props.data.saveUser()
+                this.setState({loading: false})
+                this.refreshNavBar()
+            })
+            .catch(err => {
+                if(typeof err.response !== "undefined"){
+                    if(err.response.data.message.toString().toUpperCase() === "MAIL EXIST"){
+                        errors["email"] = "L'adresse mail existe";
+                    }else{
+                        if(err.response.data.message.toString().toUpperCase() === "id_user EXIST"){
+                            errors["password"]= "ce password existe"
+                        }else{
+                            errors["form"] = "échec, veillez reéssayer"
+                        }  
+                    }
+                }else{
+                    errors["form"] = "connexion mauvaise ou le serveur ne répond pas, reéssayez plus tard"
+                }
+                
+                this.setState({errors: errors, loading: false})
+            })
+            
+        }
+
+           
+
+    }
+
+    
+
+    form=()=>{
+        if(localStorage.disabled){
+            return <h4 style={{color:"green", marginTop:100,marginBottom:100,textAlign:'center'}}>Compte créé avec success.</h4>
+        }else{
+            if (!localStorage.isconnect){
+                return(
+                    <form onSubmit= {this.handleSubmit.bind(this)} className="needs-validation">
+                       
+                       
+                        <div className='AmbassadorButtonModal'>
+                            <label>Email:</label>
+                            <input type='email' placeholder ='Email' className ="form-control" name='email'
+                            onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"] || ''} required />
+                            <span style={{color: "red"}}>{this.state.errors["email"]}</span>
+                        </div>
+                       
+                        
+                        <div className='AmbassadorButtonModal'>
+                            <label>Mot de passe:</label>
+                            <input type='password' placeholder ='Mot de passe (aumoins 8 caractères)' className ="form-control" name='password'
+                            onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"] || ''} required />
+                            <span style={{color: "red"}}>{this.state.errors["password"]}</span>
+                        </div>
+                      
+                        <div style={{justifyContent:'center',display:'flex'}}>
+                            <Loader
+                            type="ThreeDots"//Oval Rings
+                            color="#660099"
+                            visible={this.state.loading}
+                            height={40}
+                            width={40}
+                        />  
+                        </div>
+                        <div className='submitAmbassador'>
+                            <input type="submit" className="btn btn-primary form-control" value="Soumettre" disabled={localStorage.disabled} />
+                        </div>
+                    </form>
+                )
+            }
+            
+        }
+    }
 
 
     render(){
 
-        const dataCard={
-            content:[
-                {
-                    image:"../../images/chimie.jpg",
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"1450 FCFA"
-                },
-                {
-                    image:"../../images/chimie.jpg",
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:'94 FCFA'
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"70 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"1230 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"0 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"450 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"2030 FCFA"
-                },
-                {
-                    image:'forums',
-                    title:"école nationale supérieure polytechnique de Yaoundé 1",
-                    prix:"1590 FCFA"
-                },
-            ]
-
-        }
-        const cards=dataCard.content.map((card)=>
-           <>
-            <div className="col-md-3">
-                <div data-aos="fade-up" className="card2">
-                    <div className="header-card">
-                        <img  alt="concours au cameroun online-school" src={require("../../images/chimie.jpg")} className="img-responsive"></img>
-                    </div>
-                    <div className="body-card">
-                        <h5 style={{color:'black'}}>{card.title}</h5>
-                    </div>
-                    <div className="body-card2">
-                        <p>Voir les épreuves</p>
-                    </div>  
-                    <div className="footer-card">
-                        <span style={{color:'white'}}>{card.prix}</span>
-                        <span className="divider">||</span>  
-                        <span style={{color:'white', cursor:"pointer"}} className="glyphicon glyphicon-share"></span>                                                                             
-                    </div>                   
-                </div>
-            </div>
-            </>
-        )
+        
         
 
         return(
-            <>
-            <div className="accueil">
-                <div style={{marginTop:-50}}>
-
-                <div className='sticky-header-accueil'>                     
-                    <div className="container">
-                        <div className="row">
-                            <div className="segmentOne col-md-6">
-                                <h3 className='intro'>Vous souhaitez préparer un coucours?</h3>
-                                <h2 className='plateform-name'>Online-School,</h2>
-                                <h3 className='slogan'>L'accompagnateur proche de vous, loin de votre poche</h3>
-                            </div>
-                            <div className="col-md-5 col-sm-5">
-                                <video controls>
-                                    <source src={video} type="video/mp4"/>
-                                        Your browser does not support the video tag.
-                                </video>                                          
-                            </div>  
-                        </div>
-                    </div>
+            <div style={{marginTop:50,justifyContent:'center',marginBottom:50}}>
+                <div style={{marginTop:50,marginBottom:50}} className="enTeteAmbassadeur">
+                    <h1 style={{textAlign:'center', fontWeight:'bold', textTransform:'uppercase'}}>BIENVENUE!!!!</h1>
                 </div>
-                <div className="orange-stripe"></div>
-                <div className="orange-stripe"></div>
-                <div className="violet-stripe"></div>
-                <div className="orange-stripe"></div>
-                <div className="orange-stripe" style={{marginBottom:120}}></div>
-                <div  className="row margin-cards">
-                    <h2 style={{textAlign:"center",marginBottom:50,marginTop:-30, textTransform:'uppercase',fontWeight:"bold"}}>A propos</h2>
-                    <div  className="center">
-                        <div className="col-xs-12 col-sm-4 segment">
-                            <div data-aos="fade-up" className="card2">
-                                <div className="header-card">
-                                    <img  src={epreuves} alt="concours au cameroun online-school" className="img-responsive"></img>
-                                </div>
-                                <div className="body-card" style={{backgroundColor:"white"}}>
-                                <h1 style={{marginTop:30}}>Epreuves</h1>
-                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                                        </p>
-                                </div>                   
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-4 segment">
-                            <div data-aos="fade-up" className="card2">
-                                <div className="header-card">
-                                    <img  src={corrections} alt="concours au cameroun online-school" className="img-responsive"></img>
-                                </div>
-                                <div className="body-card" style={{backgroundColor:"white"}}>
-                                <h1 style={{marginTop:30}}>Corrections</h1>
-                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                                        </p>
-                                </div>                   
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-4 segment">
-                            <div data-aos="fade-up" className="card2">
-                                <div className="header-card">
-                                    <img  src={forums} alt="concours au cameroun online-school" className="img-responsive"></img>
-                                </div>
-                                <div className="body-card" style={{backgroundColor:"white"}}>
-                                <h1 style={{marginTop:30}}>Forums</h1>
-                                        <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                            lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                                        </p>
-                                </div>                   
-                            </div>
-                        </div>        
-                    </div>
-                </div>
-
-                <div data-aos="fade-up" className="row">
-                <h2 style={{textAlign:"center",marginBottom:50,textTransform:'uppercase',fontWeight:"bold"}}>Ambassadeur</h2>
-                    <div className="col-md-12 margin-ambassador">
-                        <div className="ambassador-card">
-                            <div className="row">
-                                <div className="col-md-4 ambassador-header">
-                                    <button onClick={this.isLogIn} className="button" style={{backgroundColor:"#660099",}} >
-                                        <a className="navbar-brand" style={{color:"white",margin:"auto",textTransform:"uppercase"}}>Devenir Ambassadeur</a>
-                                    </button>
-                                </div>
-                                <div className="col-md-4 ambassador-body">
-                                    <h4>kkljdkjdks</h4>
-                                    <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                        lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                                        </p>
-                                </div>
-                                <div className="col-md-4 ambassador-body">
-                                    <h4>kkljdkjdks</h4>
-                                    <p> lskjkds slkdjk slkjds sljdksj slkjdsk lsjkdks skd lskjdks slkdjs ksldj ks skdjks skdjsks
-                                        lksd ksjkds ksjdks dskd kdsljdsk dskdjsk dskdjsk dksd skdj skd sdlkd ks dslk sdlks ss ks
-                                        </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="row margin-cards">
-                    <h2 style={{textAlign:"center",marginBottom:50,textTransform:'uppercase',fontWeight:"bold"}}>concours</h2>
-                    
-                    {cards}
-                
-                </div>
-                <div className="plus">
-                    <button className="btn" style={{backgroundColor:"white"}}>
-                        <a href="/Bibliotheque"><span class="glyphicon glyphicon-plus-sign"></span> plus</a>
-                    </button>
-                </div>
-                
-                </div>                
-            </div> 
-            <ChatBox/>
-            </>
+                {this.form()}
+            </div>
         );
     }
 }

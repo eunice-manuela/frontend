@@ -8,7 +8,9 @@
 .footer-top h2{
     font-size:18px;
   } 
-  
+  footer {
+      bottom: 0px;
+  }
 .footer-top{
     background: #111;
     padding:80px 0; 

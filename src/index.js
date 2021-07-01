@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from 'axios'; 
 
 
-axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = 'http://localhost:8085/'
 //axios.defaults.baseURL = '192.168.43.252:3001/'
 axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('token');
 

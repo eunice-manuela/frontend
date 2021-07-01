@@ -8,7 +8,7 @@ class Examens extends Component {
         return (
          <>   
         <div style={{height:1000}}></div>
-        <ChatBox/>
+       
         </>
         );
     }

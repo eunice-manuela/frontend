@@ -1,3 +1,10 @@
+.line1 {
+    margin-bottom: 500px;
+    height: auto;
+    background: linear-gradient(10deg, white 0%, white 26%, transparent 26%)
+        
+}
+
 .segmentOne{
     text-align: center;
     margin-top:100px;  
@@ -46,7 +53,9 @@
     background-repeat: no-repeat;
     background-size: 100% 100% ;
     background-position: initial;
-    background-image: linear-gradient(to right, #660099,#660099,#660099, #9b007d, #b80061, #c42849, #c65039);
+     background-image: linear-gradient(to right, #660099,#660099,#660099, #9b007d, #b80061, #c42849, #c65039);
+    
+  
     margin-bottom:0px
 }
 

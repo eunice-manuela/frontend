@@ -2,6 +2,7 @@
   "name": "ticketing-front",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8085",
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/system": "^4.9.14",
@@ -9,10 +10,14 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "aos": "^2.3.4",
-    "axios": "^0.21.0",
-    "bootstrap": "3.3.7",
-    "jquery": "^3.5.1",
+    "axios": "^0.21.1",
+    "bootstrap": "^3.3.7",
+    "convert-csv-to-array": "^1.0.3",
+    "data-forge": "^1.8.17",
+    "dataframe-js": "^1.4.4",
+    "jquery": "^3.6.0",
     "mdbreact": "^4.27.0",
+    "nanoid": "^3.1.22",
     "node-sass": "4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,7 +29,9 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-sticky-box": "^0.9.3"
+    "react-sticky-box": "^0.9.3",
+    "reactstrap": "^8.8.1",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

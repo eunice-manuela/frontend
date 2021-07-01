@@ -626,11 +626,18 @@ export default class DocumentPage extends Component {
     goToTop=()=>{
         window.scrollTo(0, 0)
     }
+    goToBottom=()=>{
+        window.scrollTo(0,document.body.scrollHeight-1000);
+    }
     buttonGoToTop=()=>{
         if(!this.state.loadingContent && !this.state.loading){
             return(
                 <div className="goToTop" data-aos='zoom-in-up'>
-                    <button onClick={this.goToTop}><p><span>Haut De page </span><span className="glyphicon glyphicon-chevron-up"></span></p></button>
+                    <button><p>
+                        <span onClick={this.goToBottom}><span className="glyphicon glyphicon-chevron-down"></span> BAS </span>
+                        <span style={{color:"#c65039" }}>|</span>
+                        <span onClick={this.goToTop}> HAUT <span className="glyphicon glyphicon-chevron-up"></span></span>
+                    </p></button>
                 </div>
             )
         }
