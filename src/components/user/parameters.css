@@ -1,0 +1,13 @@
+.param-navbar{
+    margin-left: 5%;
+    margin-right: 5%; 
+    margin-top: 25px;
+    font-weight: bold;
+    width: auto;
+}
+@media only screen and (max-width: 600px) {
+    .param-navbar{
+        margin-right: 50%;
+        margin-bottom: -20px;
+    }
+}

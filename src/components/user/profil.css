@@ -1,0 +1,87 @@
+#update{
+  margin-left: 79%;
+}
+.profil{
+  margin-top: 120px;
+  height: auto;
+  padding-bottom: 300px;
+}
+.profil div{
+  width: 80%;
+  margin-left: 10%;
+}
+.profil div span{
+    
+}
+.profil_propos{
+    margin-top: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.profil_propos:hover{
+  cursor: pointer;
+}
+.profil_bio{
+  margin-top: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.profil_bio:hover{
+cursor: pointer;
+}
+.avatar{
+    border-radius: 50%;
+    height: 170px;
+    width: 170px;
+    padding: 10px;
+}
+  .name h3{
+      color: #000;
+  }
+  .about{
+    text-align: left;
+    padding: 10px;
+    background-color: whitesmoke;
+  }
+  .biographie{
+    text-align: left;
+    padding: 10px;
+    background-color: whitesmoke;
+  }
+  .info{
+    text-align: left;
+    padding: 10px;
+    background-color: whitesmoke;
+  }
+  .text-justify{
+      text-align: justify;
+  }
+  .span span{
+    padding-left: 20px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: medium;
+  }
+  .span{
+      padding-bottom: 10px;
+  }
+
+
+
+
+  @media only screen and (max-width:600px){
+    #update{
+      margin-left: 60%;
+    }
+    .profil{
+      margin-top: 60px;
+    }
+    .profil div{
+      width: 96%;
+      margin-left: 2%;
+    }
+    .about{
+        padding:30px
+    }
+    .biographie{
+        padding-left: 30px;
+    }
+  }

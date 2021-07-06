@@ -1,0 +1,199 @@
+.button {
+    border-radius:10px;
+  }
+  .biblio-header button{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+  }
+  .biblio-header button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  .biblio-header{
+    position :fixed;
+    top:200px;
+    z-index: 1;
+  }
+  .image-card img{
+    max-height: 150px;
+    min-height: 100px;
+    padding: 10px;
+    width: auto;
+    cursor: pointer;
+  }
+  .bibliotheque{
+      padding-bottom:100px;
+      padding-top: 20px;
+      padding-right: 5%;
+      padding-left: 5%;
+  }
+  .content-card{
+    margin-left:-30px ;
+    text-align: justify;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .content-card h4{
+    text-transform: uppercase;
+    font-size: small;
+    font-weight: bold;
+    color: #660099;
+  }
+  .content-card h6{
+    
+    font-weight: bold;
+  }
+  .content-card h5{
+    font-size: 13px;
+  }
+  .share-card{
+    text-align: right;
+    color: teal;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .price-card{
+    text-align: left;
+  }
+  #loader{
+    padding-top: 120px;
+    padding-bottom: 120px;
+    width: 80px;
+    margin: 0 auto;
+
+  }
+  .dropdown_categories{
+        margin-top: 60px;
+       
+  }
+  .input_year{
+    margin-top: 5px;
+    margin-left: 5px;
+    outline:none;
+  }
+  .input_year input{
+    width: 50px;
+    border: none;
+  }
+  
+  .input_year input:focus {
+    outline: none !important;
+}
+  .input_year input::placeholder{
+    color: #660099;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .dropdown_niveau{
+        margin-top: 60px;
+        margin-left: 128px;      
+  }
+  .dropdown_subject{
+    margin-top: 60px;
+    margin-left: 128px;
+  }
+  .check-option label span{
+    margin-left: 10px;
+  }
+  .check-option label{
+    margin-left: 10px;
+  }
+  .dropdown_ecole{
+    margin-top:60px;
+        
+  }
+  .check-option{
+    padding: 10px;
+    padding-right: 25px;
+  }
+  .biblio_card:hover{
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  .biblio_card{
+    margin-bottom: 20px;
+    height: auto;
+    width: auto;
+    background-color: white;
+  }
+  .sticky{
+    position: sticky;
+  }
+  .pagination{
+    display: flex;
+    justify-content: center;
+  }
+  .loaderPagination{
+    display: flex;
+    justify-content: center;
+  }
+  .loaderFilter{
+    display: flex;
+    justify-content: center;
+  }
+  #empty_space{
+    height: 100px;
+  }
+  @media only screen and (max-width:600px){
+    .dropdown_subject{
+      margin-left: 0px;
+    }
+    .dropdown_categories{
+      margin-top: 120px;
+    }
+    .dropdown_ecole{
+      margin-top: 120px;
+    }
+    .dropdown_niveau{
+      margin-top: 120px;
+    }
+    #empty_space{
+      height: 130px;
+    }
+    .bibliotheque{
+        padding-right: 2%;
+        padding-left: 2%;
+    }
+    .content-card{ 
+      text-align: justify;
+    }
+    .share-card{
+      margin-bottom: 20px;
+      font-size:x-small;
+    }
+    .price-card h5{
+      font-size:12px;
+      margin-bottom: 20px;
+    }
+    .biblio_card{
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .biblio_card:hover{
+      box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+  @media only screen and (max-width:480px){
+    .dropdown_subject{
+      margin-top: 120px;
+    }
+  }
+  @media only screen and (max-width:320px){
+    #empty_space{
+      height: 200px;
+    }
+    .filter_button{
+      margin-top: 180px;
+    }
+    .dropdown_subject{
+      margin-top: 180px;
+    }
+    .dropdown_categories{
+      margin-top: 180px;
+    }
+    .dropdown_ecole{
+      margin-top: 180px;
+    }
+    .dropdown_niveau{
+      margin-top: 180px;
+    }
+  }
+ 
